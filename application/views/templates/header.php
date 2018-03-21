@@ -14,6 +14,19 @@
 					<li><a href="<?php echo base_url(); ?>">Home</a></li>
 					<li><a href="<?php echo base_url(); ?>about">About</a></li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="<?php echo base_url(); ?>users/login">Login</a></li>
+					<li><a href="<?php echo base_url(); ?>users/register">Register</a></li>
+					<!--
+					<?php if(!$this->session->userdata('logged_in')) : ?>
+						<li><a href="<?php echo base_url(); ?>users/login">Login</a></li>
+						<li><a href="<?php echo base_url(); ?>users/register">Register</a></li>
+					<?php endif; ?>
+					<?php if($this->session->userdata('logged_in')) : ?>
+						<li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+					<?php endif; ?>
+					-->
+				</ul>
 			</div>
 		</div>
 	</nav>
