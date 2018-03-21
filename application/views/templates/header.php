@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>URMS</title>
-		<link rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css">
 	</head>
 	<body>
 	<nav class="navbar navbar-inverse">

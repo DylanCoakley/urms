@@ -23,6 +23,7 @@
 		}
 
 		public function get_requests_for_user($user_id) {
+			$this->db->order_by('RequestDate', 'DESC');
 			$query = $this->db->get_where('request', array('UserID' => $user_id));
 			return $query->result_array();
 		}
