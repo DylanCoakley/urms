@@ -13,6 +13,8 @@
   <!-- Fonts icons -->
  	<link href="<?php echo base_url().'/assets/css/font-awesome.min.css';?>" rel="stylesheet">
 
+ 	<link href="<?php echo base_url().'/assets/css/custom.css';?>" rel="stylesheet">
+
 	<head>
 		<div id="headers">
         <!-- Light header -->
