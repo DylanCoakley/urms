@@ -25,13 +25,13 @@
               <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>assets/index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="services.html">About</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>assets/services.html">About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="sliders.html">Team</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>assets/sliders.html">Team</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login/SignUp</a>
