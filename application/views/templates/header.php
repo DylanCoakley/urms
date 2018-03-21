@@ -53,7 +53,7 @@
               </div>
             </div>
           </nav>
-
+          <!--
           <div class="container">
             <div class="header-caption">
               <div class="row">
@@ -61,11 +61,11 @@
                   <h3 class="header-title animated fadeInDown"><span class="text-primary">Merry </span> Christmas!!</h3>
                   <h5 class="header-text animated fadeIn">Lorem ipsum dolor sit amet, consectetuer adipiscing elit<br>Lorem ipsum dolor sit amet, consectetuer.</h5>
                   <a href="#" class="page-scroll btn btn-lg btn-default-filled animated fadeInUp">Download Now</a>
-                  <a href="#" class="page-scroll btn btn-lg btn-common animated fadeInUp">Explore</a>
+                  <a href="#" class="page-scroll btn btn-lg btn-common animated fadeInUp">Explore</a> 
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </header>
       </div>
 	</head>
