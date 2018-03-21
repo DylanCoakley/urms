@@ -1,8 +1,6 @@
 <html>
 	<link href="<?php echo base_url().'/assets/css/bootstrap.min.css';?>" rel="stylesheet">
 
-
-
  	<link href="<?php echo base_url().'/assets/css/jasny-bootstrap.min.css';?>" rel="stylesheet">
 
  	<link href="<?php echo base_url().'/assets/css/main.css';?>" rel="stylesheet">
@@ -38,9 +36,18 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login/SignUp</a>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Login</a>
-                      <a class="dropdown-item" href="#">SignUp</a>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>users/login">Login</a>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>users/register">Sign Up</a>
                     </div>
+                    <!--
+                    <?php if(!$this->session->userdata('logged_in')) : ?>
+                      <li><a href="<?php echo base_url(); ?>users/login">Login</a></li>
+                      <li><a href="<?php echo base_url(); ?>users/register">Register</a></li>
+                    <?php endif; ?>
+                    <?php if($this->session->userdata('logged_in')) : ?>
+                      <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+                    <?php endif; ?>
+                    -->
                   </li>
                 </ul>
               </div>
@@ -62,5 +69,4 @@
         </header>
       </div>
 	</head>
-	<body> 
-			
+	<body>
