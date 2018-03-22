@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2018 at 02:17 PM
+-- Generation Time: Mar 22, 2018 at 04:26 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -21,6 +21,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `urms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounttype`
+--
+
+CREATE TABLE `accounttype` (
+  `RaffleID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `Role` varchar(255) NOT NULL DEFAULT 'User'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounttype`
+--
+
+INSERT INTO `accounttype` (`RaffleID`, `UserID`, `Role`) VALUES
+(2, 1, 'User');
 
 -- --------------------------------------------------------
 
@@ -43,25 +62,6 @@ CREATE TABLE `raffle` (
 INSERT INTO `raffle` (`RaffleID`, `Name`, `StartDate`, `EndDate`, `MaxTickets`) VALUES
 (1, '485 Raffle', '2018-03-01', '2018-03-24', 255),
 (2, 'Man Lin Raffle', '2018-03-01', '2018-03-28', 255);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `raffle_jnct_vendor`
---
-
-CREATE TABLE `raffle_jnct_vendor` (
-  `Role` varchar(255) NOT NULL,
-  `RaffleID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `raffle_jnct_vendor`
---
-
-INSERT INTO `raffle_jnct_vendor` (`Role`, `RaffleID`, `UserID`) VALUES
-('Admin', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -149,12 +149,6 @@ INSERT INTO `user` (`UserID`, `Username`, `Password`, `Name`, `Address`, `Phone`
 --
 ALTER TABLE `raffle`
   ADD PRIMARY KEY (`RaffleID`);
-
---
--- Indexes for table `raffle_jnct_vendor`
---
-ALTER TABLE `raffle_jnct_vendor`
-  ADD PRIMARY KEY (`Role`);
 
 --
 -- Indexes for table `request`
