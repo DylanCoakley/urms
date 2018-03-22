@@ -191,8 +191,6 @@
   </div>
   <!-- Page Wrapper End -->
 
-  <?php echo base_url().'/assets/css/responsive.css';?>
-
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
   <script src="<?php echo base_url().'/assets/js/jquery.min.js';?>"></script>
   <script src="<?php echo base_url().'/assets/js/tether.min.js';?>"></script>
