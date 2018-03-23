@@ -14,8 +14,25 @@
 			$this->load->database();
 		}
 
-		public function create_raffle() {
-			
+		public function create_raffle($user_id) {
+			$raffle_data = array(
+				'Name' => $this->input->post('name'),
+				'Description' => $this->input->post('description'),
+				'StartDate' => $this->input->post('start_date'),
+				'EndDate' => $this->input->post('end_date'),
+				'MaxTickets' => $this->input->post('max_tickets')
+			);
+
+			$this->db->insert('raffle', $raffle_data);
+			$raffle_id = $this->db->insert_id();
+
+			$account_data = array(
+				'RaffleID' => $raffle_id,
+				'UserID' => $user_id,
+				'Role' => "Administrator"
+			);
+
+			return $this->db->insert('accounttype', $account_data);
 		}
 
 		public function get_raffle($raffle_id) {

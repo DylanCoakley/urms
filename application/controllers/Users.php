@@ -76,6 +76,34 @@
 			}
 		}
 
+		public function edit() {
+
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'Edit Account Information';
+			$user_id = $this->session->userdata('user_id');
+			$data['user'] = $this->user_model->get_user($user_id);
+
+			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+			// Include case where email is not change, so does not have to be unique
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
+
+
+			if(!$this->form_validation->run()){
+				$this->load->view('templates/header');
+				$this->load->view('users/account-info', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$this->user_model->update_user($user_id);
+
+				$this->session->set_flashdata('account_updated', 'Your account information has been successfully updated!');
+				redirect('raffles/index');
+			}
+		}
+
 		public function logout() {
 			// Drop session data & redirect
 			$this->session->unset_userdata('logged_in');

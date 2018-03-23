@@ -10,8 +10,6 @@
 			Password
 		*/
 
-
-
 		public function __construct() {
 			$this->load->database();
 		}
@@ -44,6 +42,24 @@
 			else {
 				return false;
 			}
+		}
+
+		public function get_user($user_id) {
+			$this->db->where('UserID', $user_id);
+			$result = $this->db->get('user');
+			return $result->row_array(0);
+		}
+
+		public function update_user($user_id) {
+			$data = array(
+				'Name' => $this->input->post('name'),
+				'Address' => $this->input->post('address'),
+				'Phone' => $this->input->post('phone'),
+				'Email' => $this->input->post('email')
+			);
+
+			$this->db->where('UserID', $user_id);
+			$this->db->update('user', $data);
 		}
 
 	}
