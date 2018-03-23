@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2018 at 03:06 AM
+-- Generation Time: Mar 23, 2018 at 08:10 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -39,7 +39,10 @@ CREATE TABLE `accounttype` (
 --
 
 INSERT INTO `accounttype` (`RaffleID`, `UserID`, `Role`) VALUES
-(2, 4, 'Administrator');
+(1, 1, 'Administrator'),
+(2, 4, 'Administrator'),
+(3, 4, 'Administrator'),
+(4, 4, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -62,7 +65,9 @@ CREATE TABLE `raffle` (
 
 INSERT INTO `raffle` (`RaffleID`, `Name`, `Description`, `StartDate`, `EndDate`, `MaxTickets`) VALUES
 (1, 'Man Lin Raffle', 'Chance to win an HTML website with turquoise coloring!', '2018-03-01', '2018-03-24', 255),
-(2, 'The Best Raffle', 'Chance to win a large elephant!				', '2014-01-01', '2015-01-01', 256);
+(2, 'The Best Raffle', 'Chance to win a large elephant!				', '2014-01-01', '2015-01-01', 256),
+(3, 'Super Raffle', 'This is the next best thing since sliced bread				', '2014-02-02', '2016-02-02', 1000),
+(4, 'Another Cool Raffle', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa				', '2012-12-23', '2013-01-15', 2200);
 
 -- --------------------------------------------------------
 
@@ -73,6 +78,7 @@ INSERT INTO `raffle` (`RaffleID`, `Name`, `Description`, `StartDate`, `EndDate`,
 CREATE TABLE `request` (
   `RequestID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
+  `RaffleID` int(11) NOT NULL,
   `Type` varchar(255) NOT NULL,
   `Notes` text NOT NULL,
   `Quantity` int(255) NOT NULL,
@@ -84,9 +90,11 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`RequestID`, `UserID`, `Type`, `Notes`, `Quantity`, `RequestDate`, `Resolved`) VALUES
-(1, 2014, 'SignUP', 'pls sign me up, thx', 0, '2018-03-20 22:29:00', 0),
-(5, 6969, 'AddTickets', 'pls add tickets thx', 0, '2018-03-20 22:29:00', 0);
+INSERT INTO `request` (`RequestID`, `UserID`, `RaffleID`, `Type`, `Notes`, `Quantity`, `RequestDate`, `Resolved`) VALUES
+(6, 1, 1, 'Join', '', 0, '2018-03-23 15:43:31', 0),
+(7, 1, 4, 'Join', '', 0, '2018-03-23 15:53:17', 0),
+(8, 4, 4, 'Join', '', 0, '2018-03-23 18:36:34', 0),
+(9, 4, 2, 'Join', '', 0, '2018-03-23 18:37:31', 0);
 
 -- --------------------------------------------------------
 
@@ -187,13 +195,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `raffle`
 --
 ALTER TABLE `raffle`
-  MODIFY `RaffleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `RaffleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ticket`
@@ -205,7 +213,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
