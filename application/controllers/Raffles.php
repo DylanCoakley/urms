@@ -29,6 +29,7 @@
 			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
 
 			$this->load->view('templates/header');
+			$this->load->view('templates/raffle-tabs');
 			$this->load->view('raffles/home', $data);
 			$this->load->view('templates/footer');
 		}

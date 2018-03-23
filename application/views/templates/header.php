@@ -3,7 +3,6 @@
     <title href="<?php echo base_url(); ?>">Raffleet</title>
     <link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
   </head>
   <body>
   <nav class="navbar navbar-inverse">
@@ -32,6 +31,8 @@
       </div>
     </div>
   </nav>
+
+
 
   <div class="container">
     <!-- Flash message -->

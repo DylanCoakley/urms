@@ -29,6 +29,8 @@
 			$user_id = $this->session->userdata('user_id');
 			$data['requests'] = $this->request_model->get_user_requests($user_id);
 
+			
+
 			$this->load->view('templates/header');
 			$this->load->view('requests/account-requests', $data);
 			$this->load->view('templates/footer');
