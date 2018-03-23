@@ -24,6 +24,7 @@
           <?php if($this->session->userdata('logged_in')) : ?>
             <li><a href="<?php echo base_url(); ?>raffles/index">All Raffles</a></li>
             <li><a href="<?php echo base_url(); ?>raffles/user_list">My Raffles</a></li>
+            <li><a href="<?php echo base_url(); ?>requests/user_list">My Requests</a></li>
             <li><a href="<?php echo base_url(); ?>users/edit">Account</a></li>
             <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
           <?php endif; ?>
@@ -51,4 +52,7 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('account_updated')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('account_updated').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('join_requested')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('join_requested').'</p>'; ?>
     <?php endif; ?>

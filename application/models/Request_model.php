@@ -16,15 +16,25 @@
 			$this->load->database();
 		}
 
-		public function create() {
+		// Insert a join request tuple into the databse
+		public function create_join($user_id, $raffle_id) {
 			$data = array(
-				//'UserID' => $this->session->
+				'UserID' => $user_id,
+				'RaffleID' => $raffle_id,
+				'Type' => 'Join'
 			);
+
+			return $this->db->insert('request', $data);
 		}
 
-		public function get_requests_for_user($user_id) {
+		public function get_user_requests($user_id) {
+			$this->db->select('*');
+			$this->db->from('request');
+			$this->db->join('raffle', 'raffle.RaffleID = request.RaffleID');
+			$this->db->where('UserID', $user_id);
 			$this->db->order_by('RequestDate', 'DESC');
-			$query = $this->db->get_where('request', array('UserID' => $user_id));
+			$query = $this->db->get();
+
 			return $query->result_array();
 		}
 

@@ -16,11 +16,12 @@
 			<label>Phone Number</label>
 			<input type="text" class="form-control" name="phone" value="<?php echo $user['Phone']; ?>">
 		</div>
+		<!--
 		<div class="form-group">
 			<label>Email</label>
 			<input type="email" class="form-control" name="email" value="<?php echo $user['Email']; ?>">
 		</div>
-		<!--
+		
 		<div class="form-group">
 			<label>Password</label>
 			<input type="password" class="form-control" name="password" placeholder="Password">

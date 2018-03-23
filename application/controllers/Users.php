@@ -11,7 +11,7 @@
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[255]');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
-			if($this->form_validation->run() === FALSE)
+			if(!$this->form_validation->run())
 			{
 				$this->load->view('templates/header');
 				$this->load->view('users/register', $data);
@@ -89,7 +89,7 @@
 
 			$this->form_validation->set_rules('name', 'Name', 'trim|required');
 			// Include case where email is not change, so does not have to be unique
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
+			//$this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
 
 
 			if(!$this->form_validation->run()){

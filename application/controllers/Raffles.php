@@ -18,6 +18,37 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function home($raffle_id) {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'Raffle Homepage';
+
+			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
+
+			$this->load->view('templates/header');
+			$this->load->view('raffles/home', $data);
+			$this->load->view('templates/footer');
+		}
+
+		public function user_list() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'My Raffles';
+
+			$user_id = $this->session->userdata('user_id');
+			$data['raffles'] = $this->raffle_model->get_user_raffles($user_id);
+
+			$this->load->view('templates/header');
+			$this->load->view('raffles/account-raffles', $data);
+			$this->load->view('templates/footer');
+		}
+
 		// View specific Raffle information
 		public function view($raffle_id) {
 
@@ -35,9 +66,7 @@
 			$this->load->view('templates/footer');
 		}
 
-		public function user_list() {
-			
-		}
+
 
 		public function create() {
 			// First check if logged in

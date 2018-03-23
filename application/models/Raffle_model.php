@@ -40,6 +40,26 @@
 			return $query->row_array();
 		}
 
+		/*
+			$this->db->select('*'); or ->select('title, content, date')
+			$this->db->from('blogs');
+			$this->db->join('comments', 'comments.id = blogs.id');
+			$this->db->where('name', $name);
+			$this->db->where('title', $title);
+			$query = $this->db->get();
+
+		*/
+
+		public function get_user_raffles($user_id) {
+			$this->db->select('*');
+			$this->db->from('raffle');
+			$this->db->join('accounttype', 'raffle.RaffleID = accounttype.RaffleID');
+			$this->db->where('UserID', $user_id);
+			$query = $this->db->get();
+
+			return $query->result_array();
+		}
+
 		// Gets all raffles
 		public function get_raffles() {
 			$this->db->order_by('Name');
