@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2018 at 01:22 AM
+-- Generation Time: Mar 23, 2018 at 03:06 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -39,7 +39,7 @@ CREATE TABLE `accounttype` (
 --
 
 INSERT INTO `accounttype` (`RaffleID`, `UserID`, `Role`) VALUES
-(2, 1, 'User');
+(2, 4, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -61,8 +61,8 @@ CREATE TABLE `raffle` (
 --
 
 INSERT INTO `raffle` (`RaffleID`, `Name`, `Description`, `StartDate`, `EndDate`, `MaxTickets`) VALUES
-(1, '485 Raffle', 'Chance to win an iPod Shuffle!', '2018-03-01', '2018-03-24', 255),
-(2, 'Man Lin Raffle', 'Enter to win the chance to use turquoise on your HTML website!', '2018-03-01', '2018-03-28', 255);
+(1, 'Man Lin Raffle', 'Chance to win an HTML website with turquoise coloring!', '2018-03-01', '2018-03-24', 255),
+(2, 'The Best Raffle', 'Chance to win a large elephant!				', '2014-01-01', '2015-01-01', 256);
 
 -- --------------------------------------------------------
 
@@ -143,13 +143,17 @@ INSERT INTO `user` (`UserID`, `Username`, `Password`, `Name`, `Address`, `Phone`
 (4, '', 'ededed', 'Ed', 'Ed', 'Ed', 'ed@ed.com'),
 (5, '', 'csci485', 'Dylan Coakley', '63 MacIntyre Lane', '9025773557', 'x2014gvw@stfx.ca'),
 (6, '', 'computer', 'Dylan Coakley', '63 MacIntyre Lane', '9027369034', 'dylan_coakley11@hotmail.com'),
-(7, '', 'bobbyboy', 'Bob Hale', 'StFX', '7418529632', 'bobhale@stfx.ca'),
-(8, '', 'bababa', 'Buddy', 'B', '1234567890', 'buddy@bud.ca'),
-(9, '', 'dildo69', 'Dildo', 'dildo', '1234567890', 'dildo@dildo.ca');
+(8, '', 'bababa', 'Buddy', 'B', '1234567890', 'buddy@bud.ca');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accounttype`
+--
+ALTER TABLE `accounttype`
+  ADD PRIMARY KEY (`RaffleID`,`UserID`);
 
 --
 -- Indexes for table `raffle`
@@ -178,6 +182,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `raffle`
+--
+ALTER TABLE `raffle`
+  MODIFY `RaffleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request`
