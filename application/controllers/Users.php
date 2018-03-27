@@ -1,6 +1,6 @@
-<?php 
+<?php
 	class Users extends CI_Controller {
-		
+
 
 		public function register()
 		{
@@ -11,6 +11,8 @@
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[255]');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
+
+
 			if(!$this->form_validation->run())
 			{
 				$this->load->view('templates/header');
@@ -19,14 +21,16 @@
 			} else {
 				$password = $this->input->post('password');
 
-				$this->user_model->register($password);
+				$passwordh = password_hash($password, PASSWORD_BCRYPT);
+
+				$this->user_model->register($passwordh);
 
 				$this->session->set_userdata('user_registered', 'You are registered and can log in!');
 
 				redirect('home');
 			}
 
-			
+
 		}
 
 		public function login()
@@ -40,7 +44,7 @@
 				$this->load->view('templates/header');
 				$this->load->view('users/login', $data);
 				$this->load->view('templates/footer');
-			} 
+			}
 			else {
 				$email = $this->input->post('email');
 

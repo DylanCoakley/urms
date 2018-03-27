@@ -28,21 +28,25 @@
 
 		public function login($email, $password) {
 
-			// Validate login information
-			$this->db->where('Email', $email);
-			$this->db->where('Password', $password);
-			$result = $this->db->get('user');
+					// Validate login information
+					$this->db->where('Email', $email);
+					//$this->db->where('Password', $password);
+					$result = $this->db->get('user');
 
-			// Login info is valid
-			if($result->num_rows() == 1) {
-				$array = $result->row_array(0);
-				return $array['UserID'];
-			} 
-			// Login info invalid
-			else {
-				return false;
-			}
-		}
+					$array = $result->row_array(0);
+					$hash_password = $array['Password'];
+					$verify = Password_verify($password, $hash_password)
+
+					// Login info is valid
+					if($result->num_rows() == 1 && $verify) {
+						$array = $result->row_array(0);
+						return $array['UserID'];
+					}
+					// Login info invalid
+					else {
+						return false;
+					}
+				}
 
 		public function get_user($user_id) {
 			$this->db->where('UserID', $user_id);
