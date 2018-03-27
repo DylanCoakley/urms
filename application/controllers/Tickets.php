@@ -25,7 +25,7 @@
 
 				$book_quantity = $this->input->post('book_quantity');
 
-				$total_tickets = $ticket_quantity + (5 * $book_quantity);
+				$total_tickets = $ticket_quantity + (3 * $book_quantity);
 
 				$this->ticket_model->update_tickets($total_tickets);
 

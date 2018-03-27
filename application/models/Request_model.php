@@ -27,8 +27,15 @@
 			return $this->db->insert('request', $data);
 		}
 
-		public function create_ticket_alloc($user_id, $ticket_num){
-			$data array()
+		public function create_ticket_alloc($user_id){
+			$data = array(
+				'UserID' => $user_id,
+				'RaffleID' => 1,
+				'Type' => 'Ticket_Alloc',
+				'Quantity' => $this->input->post('ticket_quantity')
+				);
+
+			return $this->db->insert('request', $data);
 		}
 
 		public function get_user_requests($user_id) {

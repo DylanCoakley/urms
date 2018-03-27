@@ -29,10 +29,32 @@
 			$user_id = $this->session->userdata('user_id');
 			$data['requests'] = $this->request_model->get_user_requests($user_id);
 
-			
-
 			$this->load->view('templates/header');
 			$this->load->view('requests/account-requests', $data);
 			$this->load->view('templates/footer');
+		}
+
+		public function request_tickets(){
+
+			$data['title'] = 'Request Tickets';
+
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$user_id = $this->session->userdata('user_id');
+
+			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
+
+			if(!$this->form_validation->run()){
+				$this->load->view('templates/header');
+				$this->load->view('requests/request-tickets', $data);
+				$this->load->view('templates/footer');
+			}else{
+				$this->request_model->create_ticket_alloc($user_id);
+				$this->session->set_flashdata('tickets_requested', 'Your ticket request has been submitted');
+
+				redirect('requests/request_tickets');
+			}
 		}
 	}
