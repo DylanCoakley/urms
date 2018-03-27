@@ -1,6 +1,6 @@
-<?php
+<?php 
 	class Users extends CI_Controller {
-
+		
 
 		public function register()
 		{
@@ -10,8 +10,6 @@
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[255]');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
-
-
 
 			if(!$this->form_validation->run())
 			{
@@ -30,7 +28,7 @@
 				redirect('home');
 			}
 
-
+			
 		}
 
 		public function login()
@@ -44,7 +42,7 @@
 				$this->load->view('templates/header');
 				$this->load->view('users/login', $data);
 				$this->load->view('templates/footer');
-			}
+			} 
 			else {
 				$email = $this->input->post('email');
 
@@ -106,6 +104,26 @@
 				$this->session->set_flashdata('account_updated', 'Your account information has been successfully updated!');
 				redirect('raffles/index');
 			}
+		}
+
+		public function statistics() {
+
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$user_id = $this->session->userdata('user_id');
+			$user = $this->user_model->get_user($user_id);
+
+			$sold_tickets = $this->user_model->get_tickets_sold($user_id);
+
+			$data['title'] = 'Statistics For ' . $user['Name'];
+			$data['tickets_sold'] = 'Number of tickets sold: ' . $sold_tickets['Sold'];
+
+			$this->load->view('templates/header');
+			$this->load->view('users/seller-statistics', $data);
+			$this->load->view('templates/footer');
+
 		}
 
 		public function logout() {

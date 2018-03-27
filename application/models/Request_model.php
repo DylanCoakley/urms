@@ -27,6 +27,10 @@
 			return $this->db->insert('request', $data);
 		}
 
+		public function create_ticket_alloc($user_id, $ticket_num){
+			$data array()
+		}
+
 		public function get_user_requests($user_id) {
 			$this->db->select('*');
 			$this->db->from('request');
