@@ -24,6 +24,8 @@
             <li><a href="<?php echo base_url(); ?>raffles/index">All Raffles</a></li>
             <li><a href="<?php echo base_url(); ?>raffles/user_list">My Raffles</a></li>
             <li><a href="<?php echo base_url(); ?>requests/user_list">My Requests</a></li>
+            <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
+            <li><a href="<?php echo base_url(); ?>requests/request_tickets">Request Tickets</a></li>
             <li><a href="<?php echo base_url(); ?>users/edit">Account</a></li>
             <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
           <?php endif; ?>
