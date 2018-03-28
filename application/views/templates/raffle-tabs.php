@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link" href="#">Statistics</a>
+    <a class="nav-link" href="<?php echo site_url('/raffles/statistics/'.$raffle['RaffleID']); ?>">Your Statistics</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Sell Tickets</a>
+    <a class="nav-link" href="<?php echo site_url('/tickets/sell/'.$raffle['RaffleID']); ?>">Sell Tickets</a>
   </li>
   <!--<li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>

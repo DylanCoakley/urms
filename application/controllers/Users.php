@@ -18,9 +18,7 @@
 				$this->load->view('templates/footer');
 			} else {
 				$password = $this->input->post('password');
-
 				$passwordh = password_hash($password, PASSWORD_BCRYPT);
-
 				$this->user_model->register($passwordh);
 
 				$this->session->set_userdata('user_registered', 'You are registered and can log in!');

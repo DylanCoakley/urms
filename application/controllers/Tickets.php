@@ -1,13 +1,13 @@
 <?php 
 	class Tickets extends CI_Controller {
 
-		public function sell_tickets(){
-
-			$data['title'] = 'Sell Tickets';
-
+		public function sell_tickets() {//sell($raffle_id) {
+			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
 				redirect('users/login');
 			}
+
+			$data['title'] = 'Sell Tickets';
 
 			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
 			$this->form_validation->set_rules('book_quantity', 'Book Quantity', 'required');
@@ -16,7 +16,7 @@
 			$this->form_validation->set_rules('address', 'Customer Address', 'required');
 			$this->form_validation->set_rules('email', 'Customer Email', 'required');
 
-			if(!$this->form_validation->run()){
+			if(!$this->form_validation->run()) {
 				$this->load->view('templates/header');
 				$this->load->view('tickets/sell-tickets', $data);
 				$this->load->view('templates/footer');

@@ -39,7 +39,7 @@
 			// Login info is valid
 			if($result->num_rows() == 1 && $verify) {
 				return $array['UserID'];
-			} 
+			}
 			// Login info invalid
 			else {
 				return false;
@@ -64,9 +64,8 @@
 			$this->db->update('user', $data);
 		}
 
-		public function get_tickets_sold($user_id){
+		public function get_tickets_sold($user_id) {
 			$query = $this->db->query("SELECT SUM(Sold) AS Sold FROM ticket WHERE UserID=" . $user_id);
 			return $query->row_array();
 		}
-
 	}

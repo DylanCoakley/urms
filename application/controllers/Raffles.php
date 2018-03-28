@@ -29,7 +29,7 @@
 			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
 
 			$this->load->view('templates/header');
-			$this->load->view('templates/raffle-tabs');
+			$this->load->view('templates/raffle-tabs', $data);
 			$this->load->view('raffles/home', $data);
 			$this->load->view('templates/footer');
 		}
@@ -67,8 +67,6 @@
 			$this->load->view('templates/footer');
 		}
 
-
-
 		public function create() {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
@@ -98,5 +96,16 @@
 
 				redirect('raffles/index');
 			}
+		}
+
+		public function user_statistics($raffle_id) {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'Your Raffle Statistics';
+			$user_id = $this->session->userdata('user_id');
+			$data['user'] = $this->user_model->get_user($user_id);
 		}
 	}
