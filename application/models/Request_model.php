@@ -34,8 +34,8 @@
 				'Type' => 'Ticket_Alloc',
 				'Quantity' => $this->input->post('ticket_quantity')
 				);
-
-			return $this->db->insert('request', $data);
+			
+			$this->db->insert('request', $data);
 		}
 
 		public function get_user_requests($user_id) {

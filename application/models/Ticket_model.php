@@ -17,19 +17,35 @@
 			$this->load->database();
 		}
 
-		public function update_tickets($total_tickets) {
+		public function update_tickets($total_tickets, $user_id) {
 
-			$data = array(
-				'RaffleID' => 1,
-				'UserID' => $this->session->userdata('user_id'),
-				'Name' => $this->input->post('name'),
-				'Address' => $this->input->post('address'),
-				'Phone' => $this->input->post('phone'),
-				'Email' => $this->input->post('email'),
-				'Sold' => $total_tickets,
-				'DatePurchased' => date("Y/m/d")
-			);
-			//Problem with tickets being stored under single IDs with simply a quantity, schema needs to be changed to accompany individual IDs for each ticket
-			$this->db->insert('ticket', $data);
+			$this->db->where('UserID', $user_id);
+			$result = $this->db->get('accounttype');
+			$array = $result->row_array(0);
+			$tickets_before_sale = $array['Allocated_Tickets'];
+
+			if($tickets_before_sale < $total_tickets)
+			{
+				return false;
+			} else {
+				$data2 = array('Allocated_Tickets' => $tickets_before_sale - $total_tickets);
+
+				$data = array(
+					'RaffleID' => 1,
+					'UserID' => $this->session->userdata('user_id'),
+					'Name' => $this->input->post('name'),
+					'Address' => $this->input->post('address'),
+					'Phone' => $this->input->post('phone'),
+					'Email' => $this->input->post('email'),
+					'Sold' => $total_tickets,
+					'DatePurchased' => date("Y/m/d")
+				);
+				//Problem with tickets being stored under single IDs with simply a quantity, schema needs to be changed to accompany individual IDs for each ticket
+				$this->db->insert('ticket', $data);	
+
+				$this->db->where('UserID', $user_id);
+				$this->db->update('accounttype', $data2);
+				return true;
+			}
 		}
 	}

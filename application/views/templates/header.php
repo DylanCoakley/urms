@@ -59,3 +59,12 @@
     <?php if($this->session->flashdata('join_requested')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('join_requested').'</p>'; ?>
     <?php endif; ?>
+    <?php if($this->session->flashdata('tickets_requested')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_requested').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('ticket_sale')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('ticket_sale').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('invalid_sale')) : ?>
+      <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('invalid_sale').'</p>'; ?>
+    <?php endif; ?>

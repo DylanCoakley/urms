@@ -1,14 +1,13 @@
 <?php echo validation_errors(); ?>
-<?php echo $this->session->flashdata('ticket_sale');?>
 <?php echo form_open('tickets/sell_tickets'); ?>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<h1 class="text-center"><?php echo $title; ?></h1>
 			<div class="form-group">
-				<input type="number" name="ticket_quantity" class="form-control" placeholder="Individual Ticket Quanitity" required autofocus>
+				<input type="number" min = "0" name="ticket_quantity" class="form-control" placeholder="Individual Ticket Quanitity" required autofocus>
 			</div>
 			<div class="form-group">
-				<input type="number" name="book_quantity" class="form-control" placeholder="Number of Ticket Books" required autofocus>
+				<input type="number" min = "0" name="book_quantity" class="form-control" placeholder="Number of Ticket Books" required autofocus>
 			</div>
 			<div class="form-group">
 				<input type="text" name="name" class="form-control" placeholder="Customer Name" required autofocus>
