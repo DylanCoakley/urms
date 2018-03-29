@@ -6,7 +6,7 @@
 		<h1 class="text-center"><?= $title; ?></h1>
 		<div class="form-group">
 			<label>Name</label>
-			<input type="text" class="form-control" name="name" value="<?php echo $user['Name']; ?>">
+			<input type="text" class="form-control" name="name" value="<?php echo $user['UserName']; ?>">
 		</div>
 		<div class="form-group">
 			<label>Address</label>

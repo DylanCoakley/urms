@@ -1,3 +1,5 @@
+<!-- View for the Admins Requests -->
+
 <h2><?= $title ?></h2>
 
 <ul class="list-group">
@@ -8,7 +10,7 @@
 				<?php echo 'Type: Ticket Allocation'; ?><br>
 				<?php echo 'Quantity: '.$request['Quantity']; ?>
 			<?php else : ?>
-				<?php echo 'Type: '.$request['Type']; ?>
+			<?php echo 'Type: '.$request['Type']; ?>
 			<?php endif; ?>
 			<br>
 			<?php echo 'Request Date: '.$request['RequestDate']; ?>

@@ -3,7 +3,7 @@
 
 		/* User table schema
 			UserID
-			Name
+			UserName
 			Address
 			Phone
 			Email
@@ -16,7 +16,7 @@
 
 		public function register($password) {
 			$data = array(
-				'Name' => $this->input->post('name'),
+				'UserName' => $this->input->post('name'),
 				'Address' => $this->input->post('address'),
 				'Phone' => $this->input->post('phone'),
 				'Email' => $this->input->post('email'),
@@ -54,7 +54,7 @@
 
 		public function update_user($user_id) {
 			$data = array(
-				'Name' => $this->input->post('name'),
+				'UserName' => $this->input->post('name'),
 				'Address' => $this->input->post('address'),
 				'Phone' => $this->input->post('phone'),
 				'Email' => $this->input->post('email')

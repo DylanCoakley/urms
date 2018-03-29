@@ -54,7 +54,7 @@
 				$this->request_model->create_ticket_alloc($user_id);
 				$this->session->set_flashdata('tickets_requested', 'Your ticket request has been submitted');
 
-				redirect('requests/request_tickets');
+				redirect('requests/request_tickets');				
 			}
 
 		}

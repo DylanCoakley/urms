@@ -115,7 +115,7 @@
 
 			$sold_tickets = $this->user_model->get_tickets_sold($user_id);
 
-			$data['title'] = 'Statistics For ' . $user['Name'];
+			$data['title'] = 'Statistics For ' . $user['UserName'];
 			$data['tickets_sold'] = 'Number of tickets sold: ' . $sold_tickets['Sold'];
 
 			$this->load->view('templates/header');
@@ -128,7 +128,7 @@
 			// Drop session data & redirect
 			$this->session->unset_userdata('logged_in');
 			$this->session->unset_userdata('user_id');
-			$this->session->unset_userdata('username');
+			$this->session->unset_userdata('email');
 
 			$this->session->set_flashdata('user_loggedout', 'You are now logged out!');
 			redirect('users/login');

@@ -49,6 +49,18 @@
 			return $query->result_array();
 		}
 
+		public function get_raffle_requests($raffle_id) {
+			$this->db->select('*');
+			$this->db->from('request');
+			$this->db->join('raffle', 'raffle.RaffleID = request.RaffleID');
+			$this->db->join('accounttype', 'accounttype.RaffleID = request.RaffleID');
+			$this->db->join('user', 'accounttype.UserID = user.UserID');
+			$this->db->where('request.RaffleID', $raffle_id);
+			$this->db->order_by('RequestDate', 'DESC');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		public function get_all_requests() {
 			$this->db->order_by('RequestDate', 'DESC');
 			$query = $this->db->get('request');
