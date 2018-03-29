@@ -16,7 +16,7 @@
 
 		public function register($password) {
 			$data = array(
-				'Name' => $this->input->post('name'),
+				'UserName' => $this->input->post('name'),
 				'Address' => $this->input->post('address'),
 				'Phone' => $this->input->post('phone'),
 				'Email' => $this->input->post('email'),
@@ -54,7 +54,7 @@
 
 		public function update_user($user_id) {
 			$data = array(
-				'Name' => $this->input->post('name'),
+				'UserName' => $this->input->post('name'),
 				'Address' => $this->input->post('address'),
 				'Phone' => $this->input->post('phone'),
 				'Email' => $this->input->post('email')
@@ -65,7 +65,7 @@
 		}
 
 		public function get_tickets_sold($user_id) {
-			$query = $this->db->query("SELECT SUM(Sold) AS Sold FROM ticket WHERE UserID=" . $user_id);
+			$query = $this->db->query("SELECT SUM(Sold) AS Sold FROM ticket WHERE UserID = ".$user_id);
 			return $query->row_array();
 		}
 	}

@@ -23,9 +23,12 @@
           <?php if($this->session->userdata('logged_in')) : ?>
             <li><a href="<?php echo base_url(); ?>raffles/index">All Raffles</a></li>
             <li><a href="<?php echo base_url(); ?>raffles/user_list">My Raffles</a></li>
+            <!-- Just set raffle requests to go to first raffle for now -->
+            <li><a href="<?php echo base_url(); ?>requests/raffle_requests/1">Raffle Requests</a></li>
             <li><a href="<?php echo base_url(); ?>requests/user_list">My Requests</a></li>
             <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
             <li><a href="<?php echo base_url(); ?>requests/request_tickets">Request Tickets</a></li>
+            <li><a href="<?php echo base_url(); ?>users/statistics">Statistics</a></li>
             <li><a href="<?php echo base_url(); ?>users/edit">Account</a></li>
             <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
           <?php endif; ?>
@@ -58,4 +61,10 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('join_requested')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('join_requested').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('ticket_sale')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('ticket_sale').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('tickets_requested')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_requested').'</p>'; ?>
     <?php endif; ?>

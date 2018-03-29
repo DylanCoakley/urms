@@ -16,7 +16,7 @@
 
 		public function create_raffle($user_id) {
 			$raffle_data = array(
-				'Name' => $this->input->post('name'),
+				'RaffleName' => $this->input->post('name'),
 				'Description' => $this->input->post('description'),
 				'StartDate' => $this->input->post('start_date'),
 				'EndDate' => $this->input->post('end_date'),
@@ -62,7 +62,7 @@
 
 		// Gets all raffles
 		public function get_raffles() {
-			$this->db->order_by('Name');
+			$this->db->order_by('RaffleName');
 			$query = $this->db->get('raffle');
 			return $query->result_array();
 		}

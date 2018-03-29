@@ -1,5 +1,4 @@
 <?php echo validation_errors(); ?>
-<?php echo $this->session->flashdata('tickets_requested');?>
 <?php echo form_open('requests/request_tickets'); ?>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">

@@ -44,7 +44,7 @@
 
 			$user_id = $this->session->userdata('user_id');
 
-			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
+			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required|callback_is_positive', array('is_positive' => 'You must indicate a positive number of tickets to request!'));
 
 			if(!$this->form_validation->run()) {
 				$this->load->view('templates/header');
@@ -59,20 +59,28 @@
 
 		}
 
+		public function is_positive($num) {
+			return $num > 0;
+		}
+
 		public function raffle_requests($raffle_id) {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
 				redirect('users/login');
-			}
+			} 
+			// Check if user session contains Administrator Role
+			// elseif () {
+			
 
 			$data['title'] = 'Raffle Requests';
 
 			$data['requests'] = $this->request_model->get_raffle_requests($raffle_id);
 
 			$this->load->view('templates/header');
-			$this->load->view('requests/account-requests', $data);
+			$this->load->view('requests/raffle-requests', $data);
 			$this->load->view('templates/footer');
 
 
 		}
+
 	}

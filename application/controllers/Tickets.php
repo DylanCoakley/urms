@@ -10,11 +10,11 @@
 			$data['title'] = 'Sell Tickets';
 
 			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
-			$this->form_validation->set_rules('book_quantity', 'Book Quantity', 'required');
+			//$this->form_validation->set_rules('book_quantity', 'Book Quantity', 'required');
 			$this->form_validation->set_rules('name', 'Customer Name', 'required');
 			$this->form_validation->set_rules('phone', 'Customer Phone', 'required');
 			$this->form_validation->set_rules('address', 'Customer Address', 'required');
-			$this->form_validation->set_rules('email', 'Customer Email', 'required');
+			$this->form_validation->set_rules('email', 'Customer Email', 'required|valid_email');
 
 			if(!$this->form_validation->run()) {
 				$this->load->view('templates/header');
@@ -32,6 +32,9 @@
 				//Flashdata message needs to be changed to match others, unsure how currently
 				$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets successful!');
 
+				// Send email to email indicated on ticket form //
+				
+				
 			    redirect('tickets/sell_tickets');
 			}
 		}
