@@ -68,4 +68,10 @@
 			$query = $this->db->query("SELECT SUM(Sold) AS Sold FROM ticket WHERE UserID=" . $user_id);
 			return $query->row_array();
 		}
+
+		public function get_remaining_tickets($user_id) {
+			$this->db->where('UserID', $user_id);
+			$result = $this->db->get('accounttype');
+			return $result->row_array(0);
+		}
 	}

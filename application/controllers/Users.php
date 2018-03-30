@@ -114,9 +114,11 @@
 			$user = $this->user_model->get_user($user_id);
 
 			$sold_tickets = $this->user_model->get_tickets_sold($user_id);
+			$tickets_remaining = $this->user_model->get_remaining_tickets($user_id);
 
 			$data['title'] = 'Statistics For ' . $user['UserName'];
-			$data['tickets_sold'] = 'Number of tickets sold: ' . $sold_tickets['Sold'];
+			$data['tickets_sold'] = $sold_tickets['Sold'];
+			$data['tickets_remaining'] = $tickets_remaining['Allocated_Tickets'];
 
 			$this->load->view('templates/header');
 			$this->load->view('users/seller-statistics', $data);
