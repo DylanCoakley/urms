@@ -142,13 +142,10 @@
 
 			$data['title'] = 'Raffle Requests';
 
-			$user_id = $this->session->userdata('user_id');
 			$data['requests'] = $this->request_model->get_unresolved_requests();
 
 			$this->load->view('templates/header');
 			$this->load->view('requests/raffle-requests', $data);
 			$this->load->view('templates/footer');
-
-
 		}
 	}

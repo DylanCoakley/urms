@@ -1,55 +1,6 @@
 <?php
 	class Raffles extends CI_Controller {
 
-		// View list of all ongoing raffles
-		public function index() {
-
-			// First check if logged in
-			if(!$this->session->userdata('logged_in')) {
-				redirect('users/login');
-			}
-
-			$data['title'] = 'List of Raffles';
-
-			$data['raffles'] = $this->raffle_model->get_raffles();
-
-			$this->load->view('templates/header');
-			$this->load->view('raffles/index', $data);
-			$this->load->view('templates/footer');
-		}
-
-		public function home($raffle_id) {
-			// First check if logged in
-			if(!$this->session->userdata('logged_in')) {
-				redirect('users/login');
-			}
-
-			$data['title'] = 'Raffle Homepage';
-
-			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
-
-			$this->load->view('templates/header');
-			$this->load->view('templates/raffle-tabs', $data);
-			$this->load->view('raffles/home', $data);
-			$this->load->view('templates/footer');
-		}
-
-		public function user_list() {
-			// First check if logged in
-			if(!$this->session->userdata('logged_in')) {
-				redirect('users/login');
-			}
-
-			$data['title'] = 'My Raffles';
-
-			$user_id = $this->session->userdata('user_id');
-			$data['raffles'] = $this->raffle_model->get_user_raffles($user_id);
-
-			$this->load->view('templates/header');
-			$this->load->view('raffles/account-raffles', $data);
-			$this->load->view('templates/footer');
-		}
-
 		// View specific Raffle information
 		public function view() {
 
@@ -67,6 +18,100 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function sellers() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+			$data['title'] = 'Your Sellers';
+
+			$data['sellers'] = $this->raffle_model->get_sellers();
+
+			$this->load->view('templates/header');
+			$this->load->view('raffles/raffle-sellers', $data);
+			$this->load->view('templates/footer');
+		}
+
+		public function settings() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+		}
+
+		/*
+		// View list of all ongoing raffles
+		public function index() {
+
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'List of Raffles';
+
+			$data['raffles'] = $this->raffle_model->get_raffles();
+
+			$this->load->view('templates/header');
+			$this->load->view('raffles/index', $data);
+			$this->load->view('templates/footer');
+		}
+		*/
+
+		/*
+		public function home($raffle_id) {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'Raffle Homepage';
+
+			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/raffle-tabs', $data);
+			$this->load->view('raffles/home', $data);
+			$this->load->view('templates/footer');
+		}
+		*/
+		/*
+		public function user_list() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$data['title'] = 'My Raffles';
+
+			$user_id = $this->session->userdata('user_id');
+			$data['raffles'] = $this->raffle_model->get_user_raffles($user_id);
+
+			$this->load->view('templates/header');
+			$this->load->view('raffles/account-raffles', $data);
+			$this->load->view('templates/footer');
+		}
+		*/
+
+		
+
+		/*
 		public function create() {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
@@ -97,7 +142,8 @@
 				redirect('raffles/index');
 			}
 		}
-
+		*/
+		/*
 		public function user_statistics($raffle_id) {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
@@ -108,4 +154,5 @@
 			$user_id = $this->session->userdata('user_id');
 			$data['user'] = $this->user_model->get_user($user_id);
 		}
+		*/
 	}

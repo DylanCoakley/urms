@@ -17,11 +17,11 @@
 
 		public function create_raffle($user_id) {
 			$raffle_data = array(
-				'RaffleName' => $this->input->post('name'),
+				'RaffleName'  => $this->input->post('name'),
 				'Description' => $this->input->post('description'),
-				'StartDate' => $this->input->post('start_date'),
-				'EndDate' => $this->input->post('end_date'),
-				'MaxTickets' => $this->input->post('max_tickets')
+				'StartDate'   => $this->input->post('start_date'),
+				'EndDate'     => $this->input->post('end_date'),
+				'MaxTickets'  => $this->input->post('max_tickets')
 			);
 
 			$this->db->insert('raffle', $raffle_data);
@@ -29,8 +29,8 @@
 
 			$account_data = array(
 				'RaffleID' => $raffle_id,
-				'UserID' => $user_id,
-				'Role' => "Administrator"
+				'UserID'   => $user_id,
+				'Role'     => "Administrator"
 			);
 
 			return $this->db->insert('accounttype', $account_data);
@@ -39,6 +39,16 @@
 		public function get_raffle($raffle_id = 1) {
 			$query = $this->db->get_where('raffle', array('RaffleID' => $raffle_id));
 			return $query->row_array();
+		}
+
+		public function get_sellers($raffle_id = 1) {
+			$this->db->select('UserName, Email, Phone, Address, AllocatedTickets');
+			$this->db->from('accounttype');
+			$this->db->join('user', 'accounttype.UserID = user.UserID');
+			//$this->db->where('accounttype.RaffleID', $raffle_id);
+			$this->db->where('Role', 'Seller');
+			$query = $this->db->get();
+			return $query->result_array();
 		}
 
 		public function reduce_available_tickets($amount, $raffle_id = 1) {
@@ -64,7 +74,7 @@
 
 			$update_data = array(
 					'AvailableTickets' => $available_tickets + $amount,
-					'MaxTickets' => $max_tickets + $amount
+					'MaxTickets'       => $max_tickets + $amount
 			);
 
 			$this->db->where('RaffleID', $raffle_id);

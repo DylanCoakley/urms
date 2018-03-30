@@ -23,7 +23,7 @@
           <?php if($this->session->userdata('logged_in')) : ?>
             
             <?php if($this->session->userdata('role') === 'Admin') : ?>
-              <li><a href="<?php echo base_url(); ?>requests/raffle_requests">My Sellers</a></li>
+              <li><a href="<?php echo base_url(); ?>raffles/sellers">My Sellers</a></li>
               <li><a href="<?php echo base_url(); ?>requests/raffle_requests">Raffle Requests</a></li>
               <li><a href="<?php echo base_url(); ?>raffles/settings">Raffle Settings</a></li>
             <?php endif; ?>
