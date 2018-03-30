@@ -37,11 +37,14 @@
 					'Address' => $this->input->post('address'),
 					'Phone' => $this->input->post('phone'),
 					'Email' => $this->input->post('email'),
-					'Sold' => $total_tickets,
+					'Sold' => 1,
 					'DatePurchased' => date("Y/m/d")
 				);
-				//Problem with tickets being stored under single IDs with simply a quantity, schema needs to be changed to accompany individual IDs for each ticket
-				$this->db->insert('ticket', $data);	
+
+				for($i=0; $i<$total_tickets; $i++)
+				{
+					$this->db->insert('ticket', $data);
+				}
 
 				$this->db->where('UserID', $user_id);
 				$this->db->update('accounttype', $data2);
