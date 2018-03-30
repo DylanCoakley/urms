@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 03:39 PM
+-- Generation Time: Mar 31, 2018 at 12:03 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -40,11 +40,8 @@ CREATE TABLE `accounttype` (
 --
 
 INSERT INTO `accounttype` (`RaffleID`, `UserID`, `Role`, `AllocatedTickets`) VALUES
-(1, 1, 'Administrator', 2147483647),
-(2, 4, 'Administrator', 2147483647),
-(3, 4, 'Administrator', 2147483647),
-(4, 4, 'Administrator', 2147483647),
-(5, 9, 'Administrator', 2147483647);
+(1, 10, 'Admin', 12),
+(1, 11, 'Seller', 22);
 
 -- --------------------------------------------------------
 
@@ -58,6 +55,7 @@ CREATE TABLE `raffle` (
   `Description` text NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
+  `AvailableTickets` int(11) NOT NULL,
   `MaxTickets` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,12 +63,8 @@ CREATE TABLE `raffle` (
 -- Dumping data for table `raffle`
 --
 
-INSERT INTO `raffle` (`RaffleID`, `RaffleName`, `Description`, `StartDate`, `EndDate`, `MaxTickets`) VALUES
-(1, 'Man Lin Raffle', 'Chance to win an HTML website with turquoise coloring!', '2018-03-01', '2018-03-24', 255),
-(2, 'The Best Raffle', 'Chance to win a large elephant!				', '2014-01-01', '2015-01-01', 256),
-(3, 'Super Raffle', 'This is the next best thing since sliced bread				', '2014-02-02', '2016-02-02', 1000),
-(4, 'Another Cool Raffle', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa				', '2012-12-23', '2013-01-15', 2200),
-(5, 'Raffle', 'ahsdijasbhdbuasdbuasjudbh', '2015-05-05', '5000-05-05', 255);
+INSERT INTO `raffle` (`RaffleID`, `RaffleName`, `Description`, `StartDate`, `EndDate`, `AvailableTickets`, `MaxTickets`) VALUES
+(1, '12 Draws of Christmas', 'Christmas raffle where you have the chance to win money!', '2018-12-01', '2018-12-31', 2162, 2200);
 
 -- --------------------------------------------------------
 
@@ -86,26 +80,22 @@ CREATE TABLE `request` (
   `Notes` text NOT NULL,
   `Quantity` int(255) NOT NULL,
   `RequestDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Resolved` tinyint(1) NOT NULL DEFAULT '0'
+  `Resolved` tinyint(1) NOT NULL DEFAULT '0',
+  `Approved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`RequestID`, `UserID`, `RaffleID`, `Type`, `Notes`, `Quantity`, `RequestDate`, `Resolved`) VALUES
-(6, 1, 1, 'Join', '', 0, '2018-03-23 15:43:31', 0),
-(7, 1, 4, 'Join', '', 0, '2018-03-23 15:53:17', 0),
-(8, 4, 4, 'Join', '', 0, '2018-03-23 18:36:34', 0),
-(9, 4, 2, 'Join', '', 0, '2018-03-23 18:37:31', 0),
-(10, 4, 1, 'Join', '', 0, '2018-03-23 22:08:47', 0),
-(11, 9, 1, 'Ticket_Alloc', '', 2, '2018-03-28 13:49:25', 0),
-(12, 9, 1, 'Ticket_Alloc', '', 3, '2018-03-28 13:50:20', 0),
-(13, 9, 1, 'Ticket_Alloc', '', 3, '2018-03-28 16:26:54', 0),
-(14, 9, 1, 'Ticket_Alloc', '', 5, '2018-03-28 16:39:00', 0),
-(15, 9, 4, 'Join', '', 0, '2018-03-28 18:57:29', 0),
-(16, 9, 3, 'Join', '', 0, '2018-03-28 18:57:38', 0),
-(17, 9, 1, 'Join', '', 0, '2018-03-28 18:57:44', 0);
+INSERT INTO `request` (`RequestID`, `UserID`, `RaffleID`, `Type`, `Notes`, `Quantity`, `RequestDate`, `Resolved`, `Approved`) VALUES
+(1, 10, 1, 'Ticket_Alloc', '', 5, '2018-03-30 00:50:44', 0, 0),
+(2, 10, 1, 'Ticket_Alloc', '', 6, '2018-03-30 02:21:13', 1, 1),
+(3, 11, 1, 'Join', '', 0, '2018-03-30 17:45:09', 1, 1),
+(4, 10, 1, 'Ticket_Alloc', '', 6, '2018-03-30 21:11:41', 1, 1),
+(5, 11, 1, 'Ticket_Alloc', '', 10, '2018-03-30 21:13:58', 0, 0),
+(6, 11, 1, 'Ticket_Alloc', '', 11, '2018-03-30 21:17:12', 1, 1),
+(7, 11, 1, 'Ticket_Alloc', '', 15, '2018-03-30 21:22:20', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +125,14 @@ INSERT INTO `ticket` (`TicketID`, `RaffleID`, `UserID`, `Name`, `Address`, `Phon
 (3, 1, 2, 'Sam Mckinnon', '123 Hall Crescent', '333-333-3333', 'sam@sam.com', 1, '2018-03-18'),
 (4, 1, 2, 'Max Jennings', '123 Hall Street', '222-222-2222', 'max@max.com', 1, '2018-03-19'),
 (5, 2, 2, 'Sam Mckinnon', '123 Hall Crescent', '333-333-3333', 'sam@sam.com', 1, '2018-03-18'),
-(6, 1, 9, 'Bob', '1 Bob Street', '1234567890', 'bob@bob.com', 1, '2018-03-28');
+(6, 1, 9, 'Bob', '1 Bob Street', '1234567890', 'bob@bob.com', 1, '2018-03-28'),
+(7, 1, 10, 'Will', '123 Main Street', '1231231241', 'why@how.com', 1, '2018-03-30'),
+(8, 1, 10, 'Will', '123 Main Street', '1231231241', 'why@how.com', 1, '2018-03-30'),
+(9, 1, 10, 'Will', '123 Main Street', '1231231241', 'why@how.com', 1, '2018-03-30'),
+(10, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
+(11, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
+(12, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
+(13, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30');
 
 -- --------------------------------------------------------
 
@@ -146,24 +143,19 @@ INSERT INTO `ticket` (`TicketID`, `RaffleID`, `UserID`, `Name`, `Address`, `Phon
 CREATE TABLE `user` (
   `UserID` int(11) NOT NULL,
   `UserName` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Address` varchar(255) NOT NULL,
-  `Phone` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL
+  `Phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`UserID`, `UserName`, `Password`, `Address`, `Phone`, `Email`) VALUES
-(1, 'Dylan Coakley', 'd_coakes420', '1 Infinity Loop', '444-444-4444', 'ilovecomputers@dylan.com'),
-(2, 'Katie', 'katieroxs1997', 'MacEachern', '555-555-5555', '1015TheHawk1Fan@katie.com'),
-(4, 'Ed', 'ededed', 'Ed', 'Ed', 'ed@ed.com'),
-(5, 'Dylan Coakley', 'csci485', '63 MacIntyre Lane', '9025773557', 'x2014gvw@stfx.ca'),
-(6, 'Dylan Coakley', 'computer', '63 MacIntyre Lane', '9027369034', 'dylan_coakley11@hotmail.com'),
-(8, 'Buddy', 'bababa', 'B', '1234567890', 'buddy@bud.ca'),
-(9, 'bobbybob', '$2y$10$YTsRpO0U0UmOc6UTV73x0ezvj2xhXOTegzKwKYznemTMyNf24.dd.', 'bob', '908765435', '');
+INSERT INTO `user` (`UserID`, `UserName`, `Email`, `Password`, `Address`, `Phone`) VALUES
+(10, 'Amanda Mombourquette', 'amanda@phkcoc.ca', '$2y$10$0eOIM6XAODFfCCz9LgXzCekUzwYRbmqHmkeZ5TAjatnSRut1FFkRm', '123 Main Street', '9025555555'),
+(11, 'Bob', 'bob@bob.com', '$2y$10$exQVQv5fcCVchBkMYJn0r.FozWH8/t5xwlKFfBUET6bdwtd2mCZia', '123 Bob Lane', '1234567890');
 
 --
 -- Indexes for dumped tables
@@ -213,19 +205,19 @@ ALTER TABLE `raffle`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
