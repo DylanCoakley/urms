@@ -27,10 +27,14 @@
 
 				$total_tickets = $ticket_quantity + (3 * $book_quantity);
 
-				$this->ticket_model->update_tickets($total_tickets);
+				$user_id = $this->session->userdata('user_id');
+				$success = $this->ticket_model->update_tickets($total_tickets, $user_id);
 
-				//Flashdata message needs to be changed to match others, unsure how currently
-				$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets successful!');
+				if($success) {
+					$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets successful!');
+				} else {
+					$this->session->set_flashdata('invalid_sale', 'Sale of ' . $total_tickets . ' tickets failed! Insufficient tickets remaining!');
+				}
 
 			    redirect('tickets/sell_tickets');
 			}

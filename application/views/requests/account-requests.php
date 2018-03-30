@@ -1,3 +1,5 @@
+<!-- View for all requests made by a user -->
+
 <h2><?= $title ?></h2>
 
 <ul class="list-group">

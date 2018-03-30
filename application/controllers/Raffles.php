@@ -51,7 +51,7 @@
 		}
 
 		// View specific Raffle information
-		public function view($raffle_id) {
+		public function view() {
 
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
@@ -60,7 +60,7 @@
 
 			$data['title'] = 'Raffle';
 
-			$data['raffle'] = $this->raffle_model->get_raffle($raffle_id);
+			$data['raffle'] = $this->raffle_model->get_raffle();
 
 			$this->load->view('templates/header');
 			$this->load->view('raffles/view', $data);

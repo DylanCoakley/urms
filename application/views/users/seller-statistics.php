@@ -1,5 +1,4 @@
 <!--<h2><?= $title ?></h2>
-
 <?php
  
 //$dataPoints = array( 

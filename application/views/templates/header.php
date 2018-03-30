@@ -21,16 +21,28 @@
             <li><a href="<?php echo base_url(); ?>users/register">Register</a></li>
           <?php endif; ?>
           <?php if($this->session->userdata('logged_in')) : ?>
-            <li><a href="<?php echo base_url(); ?>raffles/index">All Raffles</a></li>
-            <li><a href="<?php echo base_url(); ?>raffles/user_list">My Raffles</a></li>
-            <!-- Just set raffle requests to go to first raffle for now -->
-            <li><a href="<?php echo base_url(); ?>requests/raffle_requests/1">Raffle Requests</a></li>
+            
+            <?php if($this->session->userdata('role') === 'Admin') : ?>
+              <li><a href="<?php echo base_url(); ?>requests/raffle_requests">My Sellers</a></li>
+              <li><a href="<?php echo base_url(); ?>requests/raffle_requests">Raffle Requests</a></li>
+              <li><a href="<?php echo base_url(); ?>raffles/settings">Raffle Settings</a></li>
+            <?php endif; ?>
+            
+            <?php if($this->session->userdata('role') === 'Visitor') : ?>
+              <li><a href="<?php echo base_url(); ?>raffles/view">Request Join</a></li>
+            <?php endif; ?>
+
             <li><a href="<?php echo base_url(); ?>requests/user_list">My Requests</a></li>
-            <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
-            <li><a href="<?php echo base_url(); ?>requests/request_tickets">Request Tickets</a></li>
-            <li><a href="<?php echo base_url(); ?>users/statistics">Statistics</a></li>
+
+            <?php if($this->session->userdata('role') === 'Admin' or $this->session->userdata('role') === 'Seller') : ?>
+              <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
+              <li><a href="<?php echo base_url(); ?>requests/request_tickets">Request Tickets</a></li>
+              <li><a href="<?php echo base_url(); ?>users/statistics">Statistics</a></li>
+            <?php endif; ?>
+
             <li><a href="<?php echo base_url(); ?>users/edit">Account</a></li>
             <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+
           <?php endif; ?>
         </ul>
       </div>
@@ -62,6 +74,9 @@
     <?php if($this->session->flashdata('join_requested')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('join_requested').'</p>'; ?>
     <?php endif; ?>
+    <?php if($this->session->flashdata('duplicate_join_request')) : ?>
+      <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('duplicate_join_request').'</p>'; ?>
+    <?php endif; ?>
     <?php if($this->session->flashdata('tickets_requested')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_requested').'</p>'; ?>
     <?php endif; ?>
@@ -70,4 +85,7 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('invalid_sale')) : ?>
       <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('invalid_sale').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('insufficient_raffle_tickets')) : ?>
+      <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('insufficient_raffle_tickets').'</p>'; ?>
     <?php endif; ?>

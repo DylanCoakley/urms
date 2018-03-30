@@ -7,6 +7,7 @@
 			Description
 			StartDate
 			EndDate
+			AvailableTickets
 			MaxTickets
 		*/
 
@@ -35,9 +36,39 @@
 			return $this->db->insert('accounttype', $account_data);
 		}
 
-		public function get_raffle($raffle_id) {
+		public function get_raffle($raffle_id = 1) {
 			$query = $this->db->get_where('raffle', array('RaffleID' => $raffle_id));
 			return $query->row_array();
+		}
+
+		public function reduce_available_tickets($amount, $raffle_id = 1) {
+			$raffle_data = $this->get_raffle($raffle_id);
+			$available_tickets = $raffle_data['AvailableTickets'];
+
+			if($amount <= $available_tickets) {
+				$update_data = array(
+					'AvailableTickets' => $available_tickets - $amount 
+				);
+
+				$this->db->where('RaffleID', $raffle_id);
+				return $this->db->update('raffle', $update_data);
+			} else {
+				return false;
+			}
+		}
+
+		public function add_tickets_to_raffle($amount, $raffle_id = 1) {
+			$raffle_data = get_raffle($raffle_id);
+			$available_tickets = $raffle_data['AvailableTickets'];
+			$max_tickets = $raffle_data['MaxTickets'];
+
+			$update_data = array(
+					'AvailableTickets' => $available_tickets + $amount,
+					'MaxTickets' => $max_tickets + $amount
+			);
+
+			$this->db->where('RaffleID', $raffle_id);
+			return $this->db->update('raffle', $update_data);
 		}
 
 		/*
