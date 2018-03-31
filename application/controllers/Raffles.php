@@ -53,13 +53,63 @@
 				redirect('users/statistics');
 			}
 
+			$this->load->view('templates/header');
+			$this->load->view('raffles/raffle-settings');
+			$this->load->view('templates/footer');
+		}
+
+		public function edit_info() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+			$data['title'] = 'Edit Raffle Information';
+			$data['raffle'] = $this->raffle_model->get_raffle();
+
+			$this->form_validation->set_rules('raffle_name', 'Raffle Name', 'required');
+			$this->form_validation->set_rules('description', 'Raffle Description', 'required');
+
+			if(!$this->form_validation->run()) {
+				$this->load->view('templates/header');
+				$this->load->view('raffles/raffle-edit-info', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$this->raffle_model->edit_raffle_info();
+
+				$this->session->set_flashdata('raffle_info_edited', 'You have edited some information about your raffle!');
+
+				redirect('raffles/settings');
+			}
+		}
+
+		public function increase_tickets() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
 			$data['title'] = 'Increase the Maximum Number of Tickets in the Raffle';
 
 			$this->form_validation->set_rules('quantity', 'Ticket Quantity', 'required');
 
 			if(!$this->form_validation->run()) {
 				$this->load->view('templates/header');
-				$this->load->view('raffles/raffle-settings', $data);
+				$this->load->view('raffles/raffle-increase-tickets', $data);
 				$this->load->view('templates/footer');
 			} else {
 				$amount = $this->input->post('quantity');
@@ -67,9 +117,7 @@
 
 				$this->session->set_flashdata('increased_tickets', 'You have added '.$amount.' tickets to your raffle!');
 
-				$this->load->view('templates/header');
-				$this->load->view('raffles/raffle-settings', $data);
-				$this->load->view('templates/footer');
+				redirect('raffles/settings');
 			}
 		}
 

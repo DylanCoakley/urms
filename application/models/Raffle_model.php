@@ -36,6 +36,16 @@
 			return $this->db->insert('accounttype', $account_data);
 		}
 
+		public function edit_raffle_info($raffle_id = 1) {
+			$update_data = array(
+					'RaffleName'  => $this->input->post('raffle_name'),
+					'Description' => $this->input->post('description') 
+			);
+
+			$this->db->where('RaffleID', $raffle_id);
+			return $this->db->update('raffle', $update_data);
+		}
+
 		public function get_raffle($raffle_id = 1) {
 			$query = $this->db->get_where('raffle', array('RaffleID' => $raffle_id));
 			return $query->row_array();

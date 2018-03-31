@@ -108,3 +108,6 @@
     <?php if($this->session->flashdata('closed_raffle')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('closed_raffle').'</p>'; ?>
     <?php endif; ?>
+    <?php if($this->session->flashdata('raffle_info_edited')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('raffle_info_edited').'</p>'; ?>
+    <?php endif; ?>
