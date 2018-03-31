@@ -1,8 +1,18 @@
 <html>
   <head>
     <title href="<?php echo base_url(); ?>">Raffleet</title>
-    <link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css">-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
   <nav class="navbar navbar-inverse">
@@ -88,4 +98,13 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('insufficient_raffle_tickets')) : ?>
       <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('insufficient_raffle_tickets').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('increased_tickets')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('increased_tickets').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('invalid_confirm_message')) : ?>
+      <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('invalid_confirm_message').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('closed_raffle')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('closed_raffle').'</p>'; ?>
     <?php endif; ?>

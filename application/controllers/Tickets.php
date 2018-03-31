@@ -31,7 +31,7 @@
 				$success = $this->ticket_model->update_tickets($total_tickets, $user_id);
 
 				if($success) {
-					$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets successful!');
+					$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets to '.$this->input->post('name').' successful!');
 				} else {
 					$this->session->set_flashdata('invalid_sale', 'Sale of ' . $total_tickets . ' tickets failed! Insufficient tickets remaining!');
 				}

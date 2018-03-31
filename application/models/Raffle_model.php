@@ -68,7 +68,7 @@
 		}
 
 		public function add_tickets_to_raffle($amount, $raffle_id = 1) {
-			$raffle_data = get_raffle($raffle_id);
+			$raffle_data = $this->get_raffle($raffle_id);
 			$available_tickets = $raffle_data['AvailableTickets'];
 			$max_tickets = $raffle_data['MaxTickets'];
 
@@ -81,6 +81,23 @@
 			return $this->db->update('raffle', $update_data);
 		}
 
+		public function delete_raffle_data($raffle_id = 1) {
+			// Delete all request data for the raffle
+			$this->db->where('RaffleID', $raffle_id);
+			$this->db->delete('request');
+
+			// Delete all sellers from raffle
+			$this->db->where('RaffleID', $raffle_id);
+			$this->db->where('Role', 'Seller');
+			$this->db->delete('accounttype');
+
+			// Delete all ticket data from raffle
+			$this->db->where('RaffleID', $raffle_id);
+			$this->db->delete('ticket');
+
+			return true;
+		}
+
 		/*
 			$this->db->select('*'); or ->select('title, content, date')
 			$this->db->from('blogs');
@@ -90,7 +107,7 @@
 			$query = $this->db->get();
 
 		*/
-
+			/*
 		public function get_user_raffles($user_id) {
 			$this->db->select('*');
 			$this->db->from('raffle');
@@ -107,5 +124,6 @@
 			$query = $this->db->get('raffle');
 			return $query->result_array();
 		}
+		*/
 
 	}

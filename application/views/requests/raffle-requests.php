@@ -6,6 +6,7 @@
 	<?php foreach ($requests as $request) : ?>
 		<li class="list-group-item">
 			<h4><?php echo 'Name: '.$request['UserName']; ?></h4>
+			<h5><?php echo 'Email: '.$request['Email']; ?></h5>
 			<?php if($request['Type'] === 'Ticket_Alloc'): ?>
 				<?php echo 'Type: Ticket Allocation'; ?><br>
 				<?php echo 'Quantity: '.$request['Quantity']; ?>
@@ -17,9 +18,10 @@
 			<br>
 			<?php echo $request['Notes']; ?>
 			<br>
-			<a href="<?php echo site_url('/requests/approve/'.$request['RequestID']); ?>">
+
+			<a class="btn btn-success" href="<?php echo site_url('/requests/approve/'.$request['RequestID']); ?>">
 				Approve</a>
-			<a href="<?php echo site_url('/requests/decline/'.$request['RequestID']); ?>">
+			<a class="btn btn-danger" href="<?php echo site_url('/requests/decline/'.$request['RequestID']); ?>">
 				Decline</a>
 		</li>
 

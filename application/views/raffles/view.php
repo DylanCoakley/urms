@@ -4,4 +4,4 @@
 
 <p><?php echo $raffle['Description']; ?></p>
 
-<a href="<?php echo site_url('/requests/join');?>">Request Join</a>
+<a class="btn btn-primary" href="<?php echo site_url('/requests/join');?>">Request Join</a>

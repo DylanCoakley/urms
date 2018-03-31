@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2018 at 12:03 AM
+-- Generation Time: Mar 31, 2018 at 05:28 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -40,8 +40,9 @@ CREATE TABLE `accounttype` (
 --
 
 INSERT INTO `accounttype` (`RaffleID`, `UserID`, `Role`, `AllocatedTickets`) VALUES
-(1, 10, 'Admin', 12),
-(1, 11, 'Seller', 22);
+(1, 10, 'Admin', 13),
+(1, 11, 'Seller', 22),
+(1, 12, 'Seller', 0);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,7 @@ CREATE TABLE `raffle` (
 --
 
 INSERT INTO `raffle` (`RaffleID`, `RaffleName`, `Description`, `StartDate`, `EndDate`, `AvailableTickets`, `MaxTickets`) VALUES
-(1, '12 Draws of Christmas', 'Christmas raffle where you have the chance to win money!', '2018-12-01', '2018-12-31', 2162, 2200);
+(1, '12 Draws of Christmas', 'Christmas raffle where you have the chance to win money!', '2018-12-01', '2018-12-31', 2172, 2215);
 
 -- --------------------------------------------------------
 
@@ -89,13 +90,15 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`RequestID`, `UserID`, `RaffleID`, `Type`, `Notes`, `Quantity`, `RequestDate`, `Resolved`, `Approved`) VALUES
-(1, 10, 1, 'Ticket_Alloc', '', 5, '2018-03-30 00:50:44', 0, 0),
+(1, 10, 1, 'Ticket_Alloc', '', 5, '2018-03-30 00:50:44', 1, 1),
 (2, 10, 1, 'Ticket_Alloc', '', 6, '2018-03-30 02:21:13', 1, 1),
 (3, 11, 1, 'Join', '', 0, '2018-03-30 17:45:09', 1, 1),
 (4, 10, 1, 'Ticket_Alloc', '', 6, '2018-03-30 21:11:41', 1, 1),
 (5, 11, 1, 'Ticket_Alloc', '', 10, '2018-03-30 21:13:58', 0, 0),
 (6, 11, 1, 'Ticket_Alloc', '', 11, '2018-03-30 21:17:12', 1, 1),
-(7, 11, 1, 'Ticket_Alloc', '', 15, '2018-03-30 21:22:20', 1, 1);
+(7, 11, 1, 'Ticket_Alloc', '', 15, '2018-03-30 21:22:20', 1, 1),
+(8, 12, 1, 'Join', '', 0, '2018-03-31 00:47:34', 1, 1),
+(9, 13, 1, 'Join', '', 0, '2018-03-31 13:33:07', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -132,7 +135,11 @@ INSERT INTO `ticket` (`TicketID`, `RaffleID`, `UserID`, `Name`, `Address`, `Phon
 (10, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
 (11, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
 (12, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
-(13, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30');
+(13, 1, 11, 'Joey', '4 Fifth Avenue', '0987654321', 'how@why.com', 1, '2018-03-30'),
+(14, 1, 10, 'Sal', '2 King Street', '9025773556', 'x2018rew@stfx.ca', 1, '2018-03-31'),
+(15, 1, 10, 'Sal', '2 King Street', '9025773556', 'x2018rew@stfx.ca', 1, '2018-03-31'),
+(16, 1, 10, 'Sal', '2 King Street', '9025773556', 'x2018rew@stfx.ca', 1, '2018-03-31'),
+(17, 1, 10, 'Sal', '2 King Street', '9025773556', 'x2018rew@stfx.ca', 1, '2018-03-31');
 
 -- --------------------------------------------------------
 
@@ -155,7 +162,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UserID`, `UserName`, `Email`, `Password`, `Address`, `Phone`) VALUES
 (10, 'Amanda Mombourquette', 'amanda@phkcoc.ca', '$2y$10$0eOIM6XAODFfCCz9LgXzCekUzwYRbmqHmkeZ5TAjatnSRut1FFkRm', '123 Main Street', '9025555555'),
-(11, 'Bob', 'bob@bob.com', '$2y$10$exQVQv5fcCVchBkMYJn0r.FozWH8/t5xwlKFfBUET6bdwtd2mCZia', '123 Bob Lane', '1234567890');
+(11, 'Bob', 'bob@bob.com', '$2y$10$exQVQv5fcCVchBkMYJn0r.FozWH8/t5xwlKFfBUET6bdwtd2mCZia', '123 Bob Lane', '1234567890'),
+(12, 'Sid', 'sdawg@gmail.com', '$2y$10$gi9cUSnqFueoUgnUekzuheplvviNNRfCWeROYtMRXzGV5.XyxPyJO', '55 Main Lane', '9023567421'),
+(13, 'Timmy', 'timmy@hotmail.com', '$2y$10$KFPi.rmTN1vCWanaR0HmDutmqy2D.U72vdHWvf.WfcMU7DqIBOZaa', '9 Fourth Lane', '9512347887');
 
 --
 -- Indexes for dumped tables
@@ -205,19 +214,19 @@ ALTER TABLE `raffle`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `RequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -17,7 +17,7 @@
 				<input type="text" name="phone" class="form-control" placeholder="Customer Phone Number" required autofocus>
 			</div>
 			<div class="form-group">
-				<input type="text" name="address" class="form-control" placeholder="Customer Address" required autofocus>
+				<input type="text" name="address" class="form-control" placeholder="Customer Address" autofocus>
 			</div>
 			<div class="form-group">
 				<input type="text" name="email" class="form-control" placeholder="Customer Email" required autofocus>

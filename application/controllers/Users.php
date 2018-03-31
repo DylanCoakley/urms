@@ -134,28 +134,6 @@
 			$this->load->view('templates/footer');
 		}
 
-		/*
-		public function statistics() {
-			// Check if user is logged in before they can view
-			if(!$this->session->userdata('logged_in')) {
-				redirect('users/login');
-			}
-
-			$user_id = $this->session->userdata('user_id');
-			$user = $this->user_model->get_user($user_id);
-
-			$sold_tickets = $this->user_model->get_tickets_sold($user_id);
-
-			$data['title'] = 'Statistics for ' . $user['UserName'];
-			$data['tickets_sold'] = 'Number of tickets sold: ' . $sold_tickets['Sold'];
-
-			$this->load->view('templates/header');
-			$this->load->view('users/seller-statistics', $data);
-			$this->load->view('templates/footer');
-
-		}
-		*/
-
 		// Drop session data & redirect
 		public function logout() {
 			$this->session->unset_userdata('logged_in');
