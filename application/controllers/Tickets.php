@@ -10,7 +10,6 @@
 			$data['title'] = 'Sell Tickets';
 
 			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
-			$this->form_validation->set_rules('book_quantity', 'Book Quantity', 'required');
 			$this->form_validation->set_rules('name', 'Customer Name', 'required');
 			$this->form_validation->set_rules('phone', 'Customer Phone', 'required');
 			$this->form_validation->set_rules('address', 'Customer Address', 'required');
@@ -23,17 +22,21 @@
 			} else {
 				$ticket_quantity = $this->input->post('ticket_quantity');
 
-				$book_quantity = $this->input->post('book_quantity');
+				$book_quantity = floor($ticket_quantity / 3);
 
-				$total_tickets = $ticket_quantity + (3 * $book_quantity);
+				$indiv_tickets = $ticket_quantity % 3;
 
 				$user_id = $this->session->userdata('user_id');
-				$success = $this->ticket_model->update_tickets($total_tickets, $user_id);
 
-				if($success) {
-					$this->session->set_flashdata('ticket_sale', 'Sale of ' . $total_tickets . ' tickets to '.$this->input->post('name').' successful!');
-				} else {
+				if(!$this->ticket_model->update_tickets($ticket_quantity, $user_id))
+				{
 					$this->session->set_flashdata('invalid_sale', 'Sale of ' . $total_tickets . ' tickets failed! Insufficient tickets remaining!');
+
+					redirect('tickets/sell_tickets');
+				} else {
+					$this->session->set_flashdata('ticket_sale', 'Sale of ' . $indiv_tickets . ' ticket(s) and ' . $book_quantity .' book(s) to ' . $this->input->post('name') . ' successful!');
+
+			    	redirect('tickets/sell_tickets');
 				}
 
 			    redirect('tickets/sell_tickets');
