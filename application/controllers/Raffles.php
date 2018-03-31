@@ -121,6 +121,24 @@
 			}
 		}
 
+		public function print_tickets() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+			$this->load->library('Pdf');
+			$data['tickets'] = $this->raffle_model->get_all_tickets();
+			$this->load->view('raffles/raffle-print-tickets', $data);
+		}
+
 		public function close() {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {

@@ -5,7 +5,7 @@
 <a href="<?php echo site_url('/raffles/increase_tickets'); ?>" class="btn btn-info btn-block">To Increase Page</a>
 
 <h3>Print All Tickets</h3>
-<button class="btn btn-info btn-block">Get PDF</button>
+<a href="<?php echo site_url('/raffles/print_tickets'); ?>" class="btn btn-info btn-block">Get PDF</a>
 
 <h3>Close Raffle</h3>
 <p>CAUTION! This clears all seller, ticket, and request data</p>

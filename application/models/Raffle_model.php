@@ -61,6 +61,12 @@
 			return $query->result_array();
 		}
 
+		public function get_all_tickets($raffle_id = 1) {
+			$this->db->where('RaffleID', $raffle_id);
+			$query = $this->db->get('ticket');
+			return $query->result_array();
+		}
+
 		public function reduce_available_tickets($amount, $raffle_id = 1) {
 			$raffle_data = $this->get_raffle($raffle_id);
 			$available_tickets = $raffle_data['AvailableTickets'];
