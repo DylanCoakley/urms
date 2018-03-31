@@ -22,7 +22,7 @@
 			$this->db->where('UserID', $user_id);
 			$result = $this->db->get('accounttype');
 			$array = $result->row_array(0);
-			$tickets_before_sale = $array['Allocated_Tickets'];
+			$tickets_before_sale = $array['AllocatedTickets'];
 
 			if($tickets_before_sale < $ticket_quantity)
 			{
@@ -39,7 +39,7 @@
 					'DatePurchased' => date("Y/m/d")
 				);
 
-				$data2 = array('Allocated_Tickets' => $tickets_before_sale - $ticket_quantity);
+				$data2 = array('AllocatedTickets' => $tickets_before_sale - $ticket_quantity);
 				
 				// Insert each ticket as a separate tuple in the table
 				for($i=0; $i<$ticket_quantity; $i++)
