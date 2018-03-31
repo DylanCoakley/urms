@@ -7,7 +7,12 @@
 
 			$data['title'] = ucfirst($page);
 
-			$this -> load-> view('templates/header');
+			if($page === 'home'){
+				$this -> load-> view('templates/homeHeader');
+			}else if ($page === 'login' || $page == 'signup' || $page == 'requestAccount'){
+				$this -> load-> view('templates/header');
+			}
+			
 			$this-> load-> view('pages/'.$page, $data);
 			$this-> load-> view('templates/footer');
 		}
