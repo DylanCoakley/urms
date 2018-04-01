@@ -113,6 +113,76 @@
 			}
 		}
 
+		public function upgrade($user_id) {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+			$data['title'] = 'Upgrade Seller to Administrator';
+			$data['user'] = $this->user_model->get_user($user_id);
+			$email = $data['user']['Email'];
+
+			$this->form_validation->set_rules('confirm_email', 'Upgrade Seller Confirmation Input', 'required');
+
+			if(!$this->form_validation->run()) {
+				$this->load->view('templates/header');
+				$this->load->view('users/upgrade-role', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$confirm_email = $this->input->post('confirm_email');
+				if(strtolower($confirm_email) === $email) {
+					$this->user_model->upgrade_to_admin($user_id);
+					// Set some kind of message flashdata
+					$this->session->set_flashdata('upgraded_seller', 'You have successfully upgraded '.$data['user']['UserName'].' to an administrator!');
+					redirect('raffles/sellers');
+				} else {
+					// Set some kind of message flashdata
+					$this->session->set_flashdata('invalid_upgrade_confirm_message', 'You entered the upgrade seller confirmation input incorrectly!');
+					redirect('users/upgrade/'.$user_id);
+				}
+			}
+		}
+
+		public function reduce_tickets($user_id) {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user has Admin privileges
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Seller') {
+				redirect('users/statistics');
+			}
+
+			$data['title'] = 'Reduce Allocated Tickets';
+
+			$data['user'] = $this->user_model->get_allocated_tickets($user_id);
+
+			$this->form_validation->set_rules('reduce_quantity', 'Reduce Ticket Quantity', 'required');
+
+			if(!$this->form_validation->run()) {
+				$this->load->view('templates/header');
+				$this->load->view('users/reduce-allocated-tickets', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$amount = $this->input->post('reduce_quantity');
+				$this->user_model->deallocate_tickets($amount, $user_id);
+				$this->session->set_flashdata('tickets_deallocated', 'You have deallocated '.$amount.' tickets from '.$data['user']['UserName']);
+
+				redirect('raffles/sellers');				
+			}
+		}
+
 		public function statistics() {
 
 			if(!$this->session->userdata('logged_in')) {
