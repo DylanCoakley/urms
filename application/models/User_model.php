@@ -92,7 +92,7 @@
 
 		// Make the indicated User a Seller for the Raffle
 		public function upgrade_to_seller($user_id, $raffle_id = 1) {
-			// Do we want to pre-allocate tickets??
+			// Do we want to pre-allocate tickets?? No
 			$data = array(
 				'RaffleID' 		=> $raffle_id,
 				'UserID'  		=> $user_id,
@@ -101,6 +101,27 @@
 			);
 
 			return $this->db->insert('accounttype', $data);
+		}
+
+		// Make the indicated User a Seller for the Raffle
+		public function upgrade_to_admin($user_id, $raffle_id = 1) {
+			$data = array(
+				'Role' => 'Admin'
+			);
+
+			$this->db->where('UserID', $user_id);
+			$this->db->where('RaffleID', $raffle_id);
+			return $this->db->update('accounttype', $data);
+		}
+
+		public function get_allocated_tickets($user_id, $raffle_id = 1) {
+			$this->db->select('*');
+			$this->db->from('user');
+			$this->db->join('accounttype', 'user.UserID = accounttype.UserID');
+			$this->db->where('user.UserID', $user_id);
+			$this->db->where('RaffleID', $raffle_id);
+			$result = $this->db->get();
+			return $result->row_array(0);
 		}
 		
 		public function allocate_tickets($amount, $user_id, $raffle_id = 1) {
@@ -113,11 +134,33 @@
 			$result = $this->db->get();
 			$array = $result->row_array(0);
 
-			$available_tickets = $array['AllocatedTickets'];
+			$allocated_tickets = $array['AllocatedTickets'];
 
 			// Add the new amount to the current amount
 			$update_data = array(
-					'AllocatedTickets' => $available_tickets + $amount,
+					'AllocatedTickets' => $allocated_tickets + $amount,
+			);
+
+			$this->db->where('UserID', $user_id);
+			$this->db->where('RaffleID', $raffle_id);
+			return $this->db->update('accounttype', $update_data);
+		}
+
+		public function deallocate_tickets($amount, $user_id, $raffle_id = 1) {
+			// First find how many tickets the user is already allocated
+			$this->db->select('*');
+			$this->db->from('user');
+			$this->db->join('accounttype', 'accounttype.UserID = user.UserID');
+			$this->db->where('user.UserID', $user_id);
+			$this->db->where('RaffleID', $raffle_id);
+			$result = $this->db->get();
+			$array = $result->row_array(0);
+
+			$allocated_tickets = $array['AllocatedTickets'];
+
+			// Subtract the new amount to the current amount
+			$update_data = array(
+					'AllocatedTickets' => $allocated_tickets - $amount,
 			);
 
 			$this->db->where('UserID', $user_id);

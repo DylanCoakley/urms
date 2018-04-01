@@ -52,11 +52,12 @@
 		}
 
 		public function get_sellers($raffle_id = 1) {
-			$this->db->select('UserName, Email, Phone, Address, AllocatedTickets');
+			$this->db->select('*');
 			$this->db->from('accounttype');
 			$this->db->join('user', 'accounttype.UserID = user.UserID');
-			//$this->db->where('accounttype.RaffleID', $raffle_id);
+			$this->db->where('accounttype.RaffleID', $raffle_id);
 			$this->db->where('Role', 'Seller');
+			$this->db->or_where('Role', 'Admin');
 			$query = $this->db->get();
 			return $query->result_array();
 		}

@@ -47,6 +47,9 @@
             <?php if($this->session->userdata('role') === 'Admin' or $this->session->userdata('role') === 'Seller') : ?>
               <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
               <li><a href="<?php echo base_url(); ?>requests/request_tickets">Request Tickets</a></li>
+              <?php if($this->session->userdata('role') === 'Seller') : ?>
+                <li><a href="<?php echo base_url(); ?>users/reduce_my_tickets">Reduce Tickets</a></li>
+              <?php endif; ?>
               <li><a href="<?php echo base_url(); ?>users/statistics">Statistics</a></li>
             <?php endif; ?>
 
@@ -110,4 +113,13 @@
     <?php endif; ?>
     <?php if($this->session->flashdata('raffle_info_edited')) : ?>
       <?php echo '<p class="alert alert-success">'.$this->session->flashdata('raffle_info_edited').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('invalid_upgrade_confirm_message')) : ?>
+      <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('invalid_upgrade_confirm_message').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('upgraded_seller')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('upgraded_seller').'</p>'; ?>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('tickets_deallocated')) : ?>
+      <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_deallocated').'</p>'; ?>
     <?php endif; ?>

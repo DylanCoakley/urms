@@ -65,19 +65,13 @@
 
 					$this->session->set_flashdata('user_logged_in', 'You are now logged in!');
 
-					// !!!Need to redirect 'Visitor' accounts to Raffle Join Request Page instead !!!//
-					// redirect('join?')
-
 					if($this->session->userdata('role') === 'Visitor') {
 						redirect('raffles/view');
 					} else {
 						redirect('users/statistics');
 					}
-
-					//redirect('raffles/index');
 				}
 				else {
-
 					// Login failed
 					$this->session->set_flashdata('login_failed', 'Login is invalid!');
 					redirect('users/login');
@@ -151,6 +145,40 @@
 			}
 		}
 
+		// Reduce allocated tickets, for Sellers
+		public function reduce_my_tickets() {
+			// First check if logged in
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			// Next check if user is a Seller
+			if($this->session->userdata('role') === 'Visitor') {
+				redirect('requests/user_list');
+			} elseif ($this->session->userdata('role') === 'Admin') {
+				redirect('users/statistics');
+			}
+
+			$data['title'] = 'Reduce Allocated Tickets';
+			$user_id = $this->session->userdata('user_id');
+			$data['user'] = $this->user_model->get_allocated_tickets($user_id);
+
+			$this->form_validation->set_rules('reduce_quantity', 'Reduce Ticket Quantity', 'required');
+
+			if(!$this->form_validation->run()) {
+				$this->load->view('templates/header');
+				$this->load->view('users/reduce-my-allocated-tickets', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$amount = $this->input->post('reduce_quantity');
+				$this->user_model->deallocate_tickets($amount, $user_id);
+				$this->session->set_flashdata('tickets_deallocated', 'You have reduced the number of allocated tickets you have by '.$amount.'!');
+
+				redirect('users/statistics');				
+			}
+		}
+
+		// Reduce allocated tickets, only for Admins
 		public function reduce_tickets($user_id) {
 			// First check if logged in
 			if(!$this->session->userdata('logged_in')) {
