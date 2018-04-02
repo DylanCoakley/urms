@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets3/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+    <title>Seller-Home</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -27,18 +27,32 @@
    
 <script>
 window.onload = function () {
-    var chart = new Chartist.Line('.ct-chart', {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+    var chart = new Chartist.Line('.ct-svg-chart', {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         series: [
-                [10, 9, 7, 8, 5, 4, 6, 2, 3, 3, 4, 6],
-                [4, 5, 3, 7, 3, 5, 5, 3, 4, 4, 5, 5],
-                [5, 3, 4, 5, 6, 3, 3, 4, 5, 6, 3, 4],
-                [3, 4, 5, 6, 7, 6, 4, 5, 6, 7, 6, 3]
-            ]
+    [1, 5, 2, 5, 4, 3],
+    [2, 3, 4, 8, 1, 2]
+  ]
     }, {
         low: 0,
+        showArea: true,
+        showPoint: false,
+        fullWidth: true
     });
-    chart.render
+
+    chart.on('draw', function (data) {
+        if (data.type === 'line' || data.type === 'area') {
+            data.element.animate({
+                d: {
+                    begin: 2000 * data.index,
+                    dur: 2000,
+                    from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                    to: data.path.clone().stringify(),
+                    easing: Chartist.Svg.Easing.easeOutQuint
+                }
+            });
+        }
+    });
     var chart = new Chartist.Pie('.ct-donute-chart-new', {
         labels: ['90%'],
       series: [180]
@@ -53,6 +67,24 @@ window.onload = function () {
 
 }
 </script>
+<style type="text/css">
+.ct-donute-chart-new .ct-label {
+    font-size: 30px;
+    color: red !important;
+}
+.ct-series-a .ct-slice-donut {
+  stroke: #19B5FE;
+}
+
+.btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+</style>
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -103,11 +135,11 @@ window.onload = function () {
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
+                                    <span><i class="fa fa-user f-s-40 color-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>568120</h2>
-                                    <p class="m-b-0">I've Raised</p>
+                                    <p class="m-b-0">My Tickets</p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +165,7 @@ window.onload = function () {
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>25</h2>
-                                    <p class="m-b-0">Total Money Raised</p>
+                                    <p class="m-b-0">I've Raised</p>
                                 </div>
                             </div>
                         </div>
@@ -142,11 +174,11 @@ window.onload = function () {
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-user f-s-40 color-danger"></i></span>
+                                    <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>847</h2>
-                                    <p class="m-b-0">Total Tickets Sold</p>
+                                    <p class="m-b-0">Total Money Raised</p>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +273,7 @@ window.onload = function () {
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive" style="height:380px;overflow:auto;">
+                                <div class="table-responsive" style="height:310px;overflow:auto;">
                                     <table class="table">
                                         <thead>
                                            <!-- <?php

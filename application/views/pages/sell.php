@@ -1,6 +1,6 @@
 <html>
   <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/css/normalize.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets2/css/bootstrap.min.css">
@@ -18,7 +18,6 @@
 
   <link href="<?php echo base_url().'/assets/css/main.css';?>" rel="stylesheet">
 
-  <link href="<?php echo base_url().'/assets/img/favicon.png';?>" rel="shortcut icon" type="image/x-icon"/>
 
 
   <!-- Fonts icons -->
@@ -39,8 +38,8 @@
     <link href="<?php echo base_url(); ?>assets3/css/helper.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets3/css/style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-  
-
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+  <title>Sell Tickets</title>
  <!--<link href="<?php //echo base_url().'/assets/css/customHead.css';?>" rel="stylesheet"> -->
 <style type="text/css">
 .navbar{
@@ -65,7 +64,7 @@
   height: 100%;
 }
 .background {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 0;
@@ -136,6 +135,16 @@ h2{
   text-shadow: 4px 4px 3px rgba(0,0,0,0.9); 
 }
 
+.btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+
+
 </style>
   
 
@@ -191,12 +200,12 @@ h2{
                         <input type="text" class="form-control" id="val-email" name="val-email" placeholder="123 Main St.">
                     </div>
                 </div>
-                <div class="form-group row">
+               <!--<div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="val-email">Town <span class="text-danger">*</span></label>
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Port Hawkesbury">
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="val-email">Email</label>
                     <div class="col-lg-9">
@@ -215,7 +224,7 @@ h2{
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <div class="col-lg-12">
           <div class="card">
             <div class="card-block">
@@ -232,15 +241,15 @@ h2{
                       </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-lg-4 col-form-label">Books:Ind</label>
-                    <div class="col-lg-4">
+                    <!--<label class="col-lg-4 col-form-label">Books:Ind</label>-->
+                    <div class="col-lg-5">
                         <input class="form-control" type="text" value="Books" readonly="">
                     </div>
-                    <div class="col-lg-4">
-                          <input class="form-control" type="text" value="Ind" readonly="">
+                    <div class="col-lg-5">
+                          <input class="form-control" type="text" value="Individual" readonly="">
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-5 col-form-label">Price $</label>
+                        <label class="col-lg-3 col-form-label">Price$</label>
                         <div class="col-lg-7">
                             <input class="form-control" type="text" value="Price" readonly="">
                         </div>
@@ -260,8 +269,8 @@ h2{
           </div>
         </div>
         <div class="col-lg-12" >
-          <h2  class="header-title animated fadeInDown"  style="font-size:150px !important;">Thank</h2>
-          <h2  class="header-title animated fadeInDown" style="font-size:150px !important;text-align: right">You!</h2>
+          <h2  class="header-title animated fadeInDown"  style="font-size:135px !important;">Thank</h2>
+          <h2  class="header-title animated fadeInDown" style="font-size:135px !important;text-align: right">You!</h2>
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets3/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+    <title>Admin-Seller</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -53,6 +53,23 @@ window.onload = function () {
 
 }
 </script>
+<style type="text/css">
+    .col-form-label{
+        margin:0;
+        padding:0;
+    }
+    .form-control{
+
+    }
+    .btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+</style>
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -131,6 +148,9 @@ window.onload = function () {
                                             <div class="col-lg-3">
                                                 <input type="text" class="form-control" id="val-location" name="val-location" placeholder="Antigonish">
                                             </div>
+                                            <button type="makeAdmin" class="btn btn-primary">Make Admin</button>
+                                        </div>
+                                        <div class="form-group row">
                                         </div>
                                     </form>
                                 </div>
@@ -138,6 +158,7 @@ window.onload = function () {
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Name</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
@@ -150,6 +171,7 @@ window.onload = function () {
                                         </thead>
                                         <tfoot>
                                             <tr>
+                                                <th></th>
                                                 <th>Name</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
@@ -162,6 +184,7 @@ window.onload = function () {
                                         </tfoot>
                                         <tbody>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Tiger Nixon</td>
                                                 <td contenteditable="true">System Architect</td>
                                                 <td contenteditable="true">Edinburgh</td>
@@ -172,6 +195,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Garrett Winters</td>
                                                 <td contenteditable="true">Accountant</td>
                                                 <td contenteditable="true">Tokyo</td>
@@ -182,6 +206,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Ashton Cox</td>
                                                 <td contenteditable="true">Junior Technical Author</td>
                                                 <td contenteditable="true">San Francisco</td>
@@ -192,6 +217,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Cedric Kelly</td>
                                                 <td contenteditable="true">Senior Javascript Developer</td>
                                                 <td contenteditable="true">Edinburgh</td>
@@ -202,6 +228,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Airi Satou</td>
                                                 <td contenteditable="true">Accountant</td>
                                                 <td contenteditable="true">Tokyo</td>
@@ -212,6 +239,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Brielle Williamson</td>
                                                 <td contenteditable="true">Integration Specialist</td>
                                                 <td contenteditable="true">New York</td>
@@ -222,6 +250,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Herrod Chandler</td>
                                                 <td contenteditable="true">Sales Assistant</td>
                                                 <td contenteditable="true">San Francisco</td>
@@ -232,6 +261,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Rhona Davidson</td>
                                                 <td contenteditable="true">Integration Specialist</td>
                                                 <td contenteditable="true">Tokyo</td>
@@ -242,6 +272,7 @@ window.onload = function () {
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
+                                                <td><button type="select" class="btn btn-primary">Select</button></td>
                                                 <td contenteditable="true">Colleen Hurst</td>
                                                 <td contenteditable="true">Javascript Developer</td>
                                                 <td contenteditable="true">San Francisco</td>

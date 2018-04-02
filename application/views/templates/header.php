@@ -17,8 +17,7 @@
  	<link href="<?php echo base_url().'/assets/css/jasny-bootstrap.min.css';?>" rel="stylesheet">
 
  	<link href="<?php echo base_url().'/assets/css/main.css';?>" rel="stylesheet">
-
- 	<link href="<?php echo base_url().'/assets/img/favicon.png';?>" rel="shortcut icon" type="image/x-icon"/>
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
 
 
   <!-- Fonts icons -->
@@ -69,6 +68,10 @@
   bottom:0;
   padding:0
 }
+html{
+  height: 100%;
+    margin: auto;
+  overflow-y: scroll; }
 
 
 </style>
@@ -77,7 +80,7 @@
       <header id="header-nav">
         <nav class="navbar navbar-toggleable-sm navbar-light bg-default" style="margin-bottom:0; padding-bottom:0;">
           <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="<?php echo base_url(); ?>assets/img/logo.png" alt=""></a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-expanded="false" aria-label="Toggle navigation">
               <i class="fa fa-bars"></i>
             </button>

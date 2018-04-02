@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets3/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+    <title>Admin-Home</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -27,18 +27,33 @@
    
 <script>
 window.onload = function () {
-    var chart = new Chartist.Line('.ct-chart', {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+    var chart = new Chartist.Line('.ct-svg-chart', {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         series: [
-                [10, 9, 7, 8, 5, 4, 6, 2, 3, 3, 4, 6],
-                [4, 5, 3, 7, 3, 5, 5, 3, 4, 4, 5, 5],
-                [5, 3, 4, 5, 6, 3, 3, 4, 5, 6, 3, 4],
-                [3, 4, 5, 6, 7, 6, 4, 5, 6, 7, 6, 3]
-            ]
+    [1, 5, 2, 5, 4, 3],
+    [2, 3, 4, 8, 1, 2],
+    [5, 4, 3, 2, 1, 0.5]
+  ]
     }, {
         low: 0,
+        showArea: true,
+        showPoint: false,
+        fullWidth: true
     });
-    chart.render
+
+    chart.on('draw', function (data) {
+        if (data.type === 'line' || data.type === 'area') {
+            data.element.animate({
+                d: {
+                    begin: 2000 * data.index,
+                    dur: 2000,
+                    from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                    to: data.path.clone().stringify(),
+                    easing: Chartist.Svg.Easing.easeOutQuint
+                }
+            });
+        }
+    });
     var chart = new Chartist.Pie('.ct-donute-chart-new', {
         labels: ['90%'],
       series: [180]
@@ -54,6 +69,24 @@ window.onload = function () {
 }
 </script>
 </head>
+<style type="text/css">
+    .ct-label {
+    font-size: 30px;
+    color: red !important;
+}
+.ct-series-a .ct-slice-donut {
+  stroke: #266ed9;
+}
+
+.btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+</style>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">

@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets3/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+    <title>Tickets</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -53,6 +53,18 @@ window.onload = function () {
 
 }
 </script>
+<style type="text/css">
+
+.btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+
+</style>
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -117,20 +129,19 @@ window.onload = function () {
                                             <div class="col-lg-3">
                                                 <input type="text" class="form-control" id="val-name" name="val-sname" placeholder="Seller Name">
                                             </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group row">
                                             <label class="col-lg-1 col-form-label" for="val-bname">Buyer Name</label>
                                             <div class="col-lg-3">
                                                 <input type="text" class="form-control" id="val-bname" name="val-bname" placeholder="Buyer Name">
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-addr">Address</label>
                                             <div class="col-lg-3">
                                                 <input type="text" class="form-control" id="val-addr" name="val-addr" placeholder="123 Main St.">
                                             </div>
-                                            <label class="col-lg-2 col-form-label" for="val-location">Location</label>
-                                            <div class="col-lg-3">
-                                                <input type="text" class="form-control" id="val-location" name="val-location" placeholder="Antigonish">
-                                            </div>
+                                            
                                         </div>
                                     </form>
                                 </div>

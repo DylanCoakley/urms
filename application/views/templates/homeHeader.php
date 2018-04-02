@@ -7,7 +7,7 @@
 
  	<link href="<?php echo base_url().'/assets/css/main.css';?>" rel="stylesheet">
 
- 	<link href="<?php echo base_url().'/assets/img/favicon.png';?>" rel="shortcut icon" type="image/x-icon">
+ 	<!--<link href="<?php //echo base_url().'/assets/img/favicon.png';?>" rel="shortcut icon" type="image/x-icon">-->
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo base_url(); ?>assets3/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -20,7 +20,8 @@
 
  	<link href="<?php echo base_url().'/assets/css/header.css';?>" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+  <title>Home</title>
 
 <style type="text/css">
 
@@ -89,7 +90,7 @@ p{
         <header id="header-style-1">
           <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
             <div class="container">
-              <a class="navbar-brand" href="index.html"><img src="<?php echo base_url(); ?>assets/img/logo3.jpg" alt=""></a>
+             <!-- <a class="navbar-brand" href="index.html"><img src="<?php echo base_url(); ?>assets/img/logo3.jpg" alt=""></a>-->
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i>
               </button>
               <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">

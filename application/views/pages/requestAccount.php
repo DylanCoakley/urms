@@ -5,8 +5,8 @@
   <meta name="description" content="Bootstrap UI Kit">
   <meta name="keywords" content="ui kit">
   <meta name="author" content="UIdeck">
-
-  <title>Join Raffle</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+  <title>Request Sent</title>
   <style type="text/css">
   .header-nav{
   background-color: transparent;

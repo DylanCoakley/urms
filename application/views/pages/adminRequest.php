@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets3/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
+    <title>Requests</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -24,7 +24,16 @@
     <link href="<?php echo base_url(); ?>assets3/css/lib/owl.theme.default.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets3/css/helper.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets3/css/style.css" rel="stylesheet">
-   
+<style type="text/css">
+    .btn-primary{
+        background-color: #19B5FE;
+        border: 0 none;
+    }
+.btn-primary:hover{
+     background-color: #1F4788;
+        border: 0 none;
+}
+</style>
 <script>
 window.onload = function () {
     var chart = new Chartist.Line('.ct-chart', {

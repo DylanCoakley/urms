@@ -11,11 +11,6 @@
   background-color: transparent;
 }
 
-.button{
-  background-color: blue
-  color: darkblue;
-  border: 3px solid green;
-}
 #pull-right{
   color: darkblue;
 }
@@ -42,7 +37,7 @@
 }
 
 .background {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 0;
@@ -58,13 +53,15 @@
 
 .content{
   
-  
+  overflow-y: scroll; 
   margin: auto;
     width: 40%;
-    height: 35%;
-  
 }
-
+a.btn{
+  width: 100% !important;
+  margin: 0 auto;
+}
+html,body{overflow-y: scroll; }
 
 </style>
 
@@ -75,7 +72,7 @@
   <link rel="stylesheet" href="<?php echo base_url().'/assets/css/font-awesome.min.css';?>">
 
 	<div class="content" style="margin-left: 30%;">
-	  <div id="register-form">
+	  <div id="register-form" style="overflow:auto;">
       <h3 class="log-title">Join Raffle</h3>
       <div class="form-group">
         <input type="text" class="form-control" id="name" placeholder="Name" required data-error="*Please fill out this field">
@@ -98,14 +95,15 @@
         <div class="help-block with-errors"></div>
       </div>
       <div class="log-line reg-form-1 no-margin">
-        <div class="pull-left">
-          <a href="requestAccount" type="submit" id="reg-submit" class="btn btn-md btn-common btn-log" style="color:darkblue;  border: 2px solid darkblue">Join</a>
+        <div class="">
+          <a href="requestAccount" type="submit" id="reg-submit" class="btn btn-md btn-common btn-log" style="color:#003399;  border: 2px solid darkblue;">Join</a>
           <div id="msgSubmit" class="h3 text-center hidden"></div>
           <div class="clearfix"></div>
-        </div>
-
       </div>
       <a href="login" class="forgot-password" style="color:darkblue">Already Have an Account? Login</a>
+
+    </div>
+      
     </div>
   </div>
     

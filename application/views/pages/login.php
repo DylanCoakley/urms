@@ -76,14 +76,13 @@
     <div id="login-form">
       <h3 class="log-title">Log In</h3>
       <div class="form-group">
-        <input type="text" class="form-control" id="username" placeholder="Username" required data-error="*Please fill out this field">
+        <input type="text" class="form-control" id="email" placeholder="Email" required data-error="*Please fill out this field">
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
         <input type="email" class="form-control" id="password" placeholder="Password" required>
         <div class="help-block with-errors"></div>
       </div>
-      <a href="#" class="forgot-password" style="color:darkblue">Forgot your Password?</a>
       <div class="log-line" style="padding-right: 50px;">
         <div class="pull-right">
           <button type="submit" id="log-submit" class="btn btn-md btn-common btn-log " style="width:150%;color:darkblue; border: 2px solid darkblue">Log In</button>
