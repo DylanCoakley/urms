@@ -93,8 +93,7 @@ window.onload = function () {
                     <h3 class="text-primary">Sellers</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Sellers</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Logout</a></li>
                     </ol>
                 </div>
             </div>
@@ -145,6 +144,7 @@ window.onload = function () {
                                                 <th>Address</th>
                                                 <th>Location</th>
                                                 <th>Sold</th>
+                                                <th>Status</th>
                                                 <th>Update</th>
                                             </tr>
                                         </thead>
@@ -156,6 +156,7 @@ window.onload = function () {
                                                 <th>Address</th>
                                                 <th>Location</th>
                                                 <th>Sold</th>
+                                                <th>Status</th>
                                                 <th>Update</th>
                                             </tr>
                                         </tfoot>
@@ -167,6 +168,7 @@ window.onload = function () {
                                                 <td contenteditable="true">61</td>
                                                 <td contenteditable="true">2011/04/25</td>
                                                 <td contenteditable="true">$320,800</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -176,6 +178,7 @@ window.onload = function () {
                                                 <td contenteditable="true">63</td>
                                                 <td contenteditable="true">2011/07/25</td>
                                                 <td contenteditable="true">$170,750</td>
+                                                <td contenteditable="true">Admin</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -185,6 +188,7 @@ window.onload = function () {
                                                 <td contenteditable="true">66</td>
                                                 <td contenteditable="true">2009/01/12</td>
                                                 <td contenteditable="true">$86,000</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -194,6 +198,7 @@ window.onload = function () {
                                                 <td contenteditable="true">22</td>
                                                 <td contenteditable="true">2012/03/29</td>
                                                 <td contenteditable="true">$433,060</td>
+                                                <td contenteditable="true">Admin</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -203,6 +208,7 @@ window.onload = function () {
                                                 <td contenteditable="true">33</td>
                                                 <td contenteditable="true">2008/11/28</td>
                                                 <td contenteditable="true">$162,700</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -212,6 +218,7 @@ window.onload = function () {
                                                 <td contenteditable="true">61</td>
                                                 <td contenteditable="true">2012/12/02</td>
                                                 <td contenteditable="true">$372,000</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -221,6 +228,7 @@ window.onload = function () {
                                                 <td contenteditable="true">59</td>
                                                 <td contenteditable="true">2012/08/06</td>
                                                 <td contenteditable="true">$137,500</td>
+                                                <td contenteditable="true">Admin</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -230,6 +238,7 @@ window.onload = function () {
                                                 <td contenteditable="true">55</td>
                                                 <td contenteditable="true">2010/10/14</td>
                                                 <td contenteditable="true">$327,900</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             <tr>
@@ -239,6 +248,7 @@ window.onload = function () {
                                                 <td contenteditable="true">39</td>
                                                 <td contenteditable="true">2009/09/15</td>
                                                 <td contenteditable="true">$205,500</td>
+                                                <td contenteditable="true">Seller</td>
                                                 <td><button type="submit" class="btn btn-primary">Update</button></td>
                                             </tr>
                                             </tbody>

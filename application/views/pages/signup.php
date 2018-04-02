@@ -61,11 +61,9 @@
   
   margin: auto;
     width: 40%;
-    height: 40%;
+    height: 35%;
   
 }
-
-
 
 
 </style>
@@ -80,11 +78,11 @@
 	  <div id="register-form">
       <h3 class="log-title">Join Raffle</h3>
       <div class="form-group">
-        <input type="text" class="form-control" id="email" placeholder="Email" required data-error="*Please fill out this field">
+        <input type="text" class="form-control" id="name" placeholder="Name" required data-error="*Please fill out this field">
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" id="username" placeholder="Username" required>
+        <input type="email" class="form-control" id="email" placeholder="Email" required>
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">

@@ -93,8 +93,7 @@ window.onload = function () {
                     <h3 class="text-primary">Tickets</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Tickets</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Logout</a></li>
                     </ol>
                 </div>
             </div>

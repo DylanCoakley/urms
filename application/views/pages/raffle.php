@@ -66,8 +66,7 @@
                     <h3 class="text-primary">My Raffle</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Logout</a></li>
                     </ol>
                 </div>
             </div>
