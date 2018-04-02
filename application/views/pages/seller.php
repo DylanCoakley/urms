@@ -73,6 +73,7 @@ window.onload = function () {
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li><a href="http://localhost/ci/pages/view/seller">Home</a></li>
+                        <li><a href="http://localhost/ci/pages/view/profile">Profile</a></li>
                         <li><a href="http://localhost/ci/pages/view/sell">Sell Tickets</a></li>
                     </ul>
                 </nav>
@@ -179,6 +180,137 @@ window.onload = function () {
                         </div>
                     </div>
                 <!-- column -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title m-t-15">Requests</h3>
+                                <div class="form-validation">
+                                    <form class="form-valide" action="#" method="post">
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-dateofReq">Date <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-dateofReq" name="val-number" placeholder="Today's Date">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            
+                                                <label class="col-lg-4 col-form-label" for="val-type">Type<span class="text-danger">*</span></label>
+                                                <div class="col-lg-6">
+                                                    <select class="form-control">
+                                                        <option>Request Tickets</option>
+                                                        <option>Reduce Tickets</option>
+                                                        <option>Leave Raffle</option>
+                                                    </select>
+                                                </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-quantity">Quantity <span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-quantity" name="val-quantity" placeholder="10">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label"><a data-toggle="modal" data-target="#modal-terms" href="#">Email Response?</a></label>
+                                            <div class="col-lg-8">
+                                                <label class="css-control css-control-primary css-checkbox" for="val-conEmail">
+                                                    <input type="checkbox" class="css-control-input" id="val-terms" name="val-terms" value="1">
+                                                    <span class="css-control-indicator"></span> Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-3 col-sm-9">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="button" class="btn btn-inverse">Clear</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-title">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <h4>Past Requests</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive" style="height:380px;overflow:auto;">
+                                    <table class="table">
+                                        <thead>
+                                           <!-- <?php
+                                                $con=mysqli_connect("example.com","peter","abc123","my_db");
+                                                // Check connection
+                                                if (mysqli_connect_errno())
+                                                {
+                                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                                }
+
+                                                $result = mysqli_query($con,"SELECT * FROM Persons");
+
+                                                echo "<table border='1'>
+                                                <tr>
+                                                <th>Firstname</th>
+                                                <th>Lastname</th>
+                                                </tr>";
+
+                                                while($row = mysqli_fetch_array($result))
+                                                {
+                                                    echo "<tr class='clickable-row' data-href='localhost/ci/pages/view/requests'>";
+                                                    echo "<td>" . $row['FirstName'] . "</td>";
+                                                    echo "<td>" . $row['LastName'] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                                echo "</table>";
+
+                                                mysqli_close($con);
+                                                ?>-->
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>John Abraham</td>
+                                                <td><span>Join Raffle</span></td>
+                                                <td>1-Dec-2017</td>
+                                                <td>Granted</td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Abraham</td>
+                                                <td><span>Tickets</span></td>
+                                                 <td>1-Dec-2017</td>
+                                                <td>Denied</td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Abraham</td>
+                                                <td><span>Tickets</span></td>
+                                                <td>1-Dec-2017</td>
+                                                <td>Pending</td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Abraham</td>
+                                                <td><span>Join Raffle</span></td>
+                                                <td>1-Dec-2017</td>
+                                                <td>Granted</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
