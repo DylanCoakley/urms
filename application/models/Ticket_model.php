@@ -17,41 +17,37 @@
 			$this->load->database();
 		}
 
-		public function update_tickets($ticket_quantity, $user_id, $price) {
+		public function update_tickets($total_tickets, $user_id) {
 
 			$this->db->where('UserID', $user_id);
 			$result = $this->db->get('accounttype');
 			$array = $result->row_array(0);
 			$tickets_before_sale = $array['AllocatedTickets'];
-			$money_raised_before = $array['MoneyRaised'];
 
-			if($tickets_before_sale < $ticket_quantity)
+			if($tickets_before_sale < $total_tickets)
 			{
 				return false;
 			} else {
 				$data = array(
 					'RaffleID' => 1,
-					'UserID' => $this->session->userdata('user_id'),
-					'Name' => $this->input->post('name'),
-					'Address' => $this->input->post('address'),
-					'Phone' => $this->input->post('phone'),
-					'Email' => $this->input->post('email'),
-					'Sold' => 1,
+					'UserID'   => $this->session->userdata('user_id'),
+					'Name'     => $this->input->post('name'),
+					'Address'  => $this->input->post('address'),
+					'Phone'    => $this->input->post('phone'),
+					'Email'    => $this->input->post('email'),
+					'Sold'     => 1,
 					'DatePurchased' => date("Y/m/d")
 				);
-
-				$data2 = array('AllocatedTickets' => $tickets_before_sale - $ticket_quantity,
-							   'MoneyRaised' => $money_raised_before + $price);
 				
 				// Insert each ticket as a separate tuple in the table
-				for($i=0; $i<$ticket_quantity; $i++)
-				{
+				for($i = 0; $i < $total_tickets; $i++) {
 					$this->db->insert('ticket', $data);
 				}
-				
+
 				// Modify the amount of tickets the seller has left
+				$data2 = array('AllocatedTickets' => ($tickets_before_sale - $total_tickets));
 				$this->db->where('UserID', $user_id);
-				$this->db->update('accounttype', $data2);
+				$this->db->update('accounttype', $data2);	
 				return true;
 			}
 		}

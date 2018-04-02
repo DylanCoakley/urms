@@ -48,7 +48,7 @@
 
 		public function get_raffle($raffle_id = 1) {
 			$query = $this->db->get_where('raffle', array('RaffleID' => $raffle_id));
-			return $query->row_array();
+			return $query->row_array(0);
 		}
 
 		public function get_sellers($raffle_id = 1) {

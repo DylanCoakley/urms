@@ -19,7 +19,7 @@
 
 		// Insert a join request tuple into the databse
 		public function create_join($user_id, $raffle_id = 1) {
-
+			/*
 			// First query to see if join assocaiated with specified UserID already exists
 			$this->db->where('UserID', $user_id);
 			$query = $this->db->get('request');
@@ -28,6 +28,7 @@
 				// A request is already pending for the user
 				return false;
 			}
+			*/
 
 			$data = array(
 				'UserID' => $user_id,
@@ -46,7 +47,7 @@
 				'Quantity' => $this->input->post('ticket_quantity')
 			);
 			
-			$this->db->insert('request', $data);
+			return $this->db->insert('request', $data);
 		}
 
 		public function get_request($request_id) {

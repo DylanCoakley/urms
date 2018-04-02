@@ -4,27 +4,35 @@
 		// User registration 
 		public function register()
 		{
-			$data['title'] = 'Register';
-
 			$this->form_validation->set_rules('name', 'Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[255]');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
+			$raffle_data = $this->raffle_model->get_raffle();
+			$data['tickets_available'] = $raffle_data['AvailableTickets'];
+
 			// If form does not comply to rules, redisplay webpage indicating the error
 			if(!$this->form_validation->run())
 			{
-				$this->load->view('templates/header');
-				$this->load->view('users/register', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('templates/headerNew');
+				$this->load->view('users/signup', $data);//, $data);
+				$this->load->view('templates/footerNew');
 			} else {
 				$password = $this->input->post('password');
 				$passwordh = password_hash($password, PASSWORD_BCRYPT);
 				$this->user_model->register($passwordh);
 
-				$this->session->set_userdata('user_registered', 'You are registered and can log in!');
+				$email = $this->input->post('email');
+				$user_data = $this->user_model->get_user_by_email($email);
+				$user_id = (int) $user_data['UserID'];
 
-				redirect('home');
+				$this->request_model->create_join($user_id);
+				$this->request_model->create_ticket_alloc($user_id);
+
+				$this->session->set_userdata('user_registered', 'You are now registered, please wait for your Join Request to be approved before logging in!');
+
+				redirect('users/login');
 			}
 		}
 

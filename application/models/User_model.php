@@ -77,6 +77,14 @@
 			return $result->row_array(0);
 		}
 
+		// Get information associated with specified Email
+		public function get_user_by_email($email) {
+			$this->db->where('Email', $email);
+			$result = $this->db->get('user');
+			return $result->row_array(0);
+		}
+
+
 		// Update a users account information
 		public function update_user($user_id) {
 			$data = array(
