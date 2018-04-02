@@ -84,6 +84,10 @@ window.onload = function () {
      background-color: #1F4788;
         border: 0 none;
 }
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+  stroke: #19B5FE;
+}
 </style>
 </head>
 <body class="fix-header fix-sidebar">

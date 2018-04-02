@@ -61,7 +61,10 @@
   margin: auto;
     width: 40%;
     height: 40%;
-  
+  }
+  .btn:hover{
+    background-color: #1F4788;
+    color: white;
 }
 
   </style>

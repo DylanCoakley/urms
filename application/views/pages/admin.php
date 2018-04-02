@@ -32,7 +32,6 @@ window.onload = function () {
         series: [
     [1, 5, 2, 5, 4, 3],
     [2, 3, 4, 8, 1, 2],
-    [5, 4, 3, 2, 1, 0.5]
   ]
     }, {
         low: 0,
@@ -70,12 +69,13 @@ window.onload = function () {
 </script>
 </head>
 <style type="text/css">
-    .ct-label {
-    font-size: 30px;
-    color: red !important;
+   .ct-donute-chart-new .ct-label {
+    
+    font-size: 20px;
 }
 .ct-series-a .ct-slice-donut {
-  stroke: #266ed9;
+  stroke: #19B5FE;
+  stroke-width: 50px !important; 
 }
 
 .btn-primary{
@@ -86,6 +86,11 @@ window.onload = function () {
      background-color: #1F4788;
         border: 0 none;
 }
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+  stroke: #19B5FE;
+}
+
 </style>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -152,7 +157,7 @@ window.onload = function () {
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                    <span><i class="fa fa-user f-s-40 color-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>1178</h2>
@@ -236,7 +241,7 @@ window.onload = function () {
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-name">Name <span class="text-danger">*</span></label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Name..">
+                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -251,16 +256,11 @@ window.onload = function () {
                                                 <input type="text" class="form-control" id="val-email" name="val-email" placeholder="123 Main St.">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-email">Town <span class="text-danger">*</span></label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Port Hawkesbury">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-email">Email</label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
+                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -317,7 +317,7 @@ window.onload = function () {
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive" style="height:677px;overflow:auto;">
+                                <div class="table-responsive" style="height:602px;overflow:auto;">
                                     <table class="table">
                                         <thead>
                                            <!-- <?php
@@ -375,14 +375,14 @@ window.onload = function () {
                                                 <td>John Abraham</td>
                                                 <td><span>Tickets</span></td>
                                                 <td contenteditable="true"><span>-25</span></td>
-                                                <td><button type="submit" class="btn btn-primary">edit</button></td>
+                                                <td><button type="submit" class="btn btn-primary">Grant</button></td>
                                                 <td><button type="submit" class="btn btn-primary">Deny</button></td>
                                             </tr>
                                             <tr>
                                                 <td>John Abraham</td>
                                                 <td><span>Join Raffle</span></td>
                                                 <td contenteditable="true"><span>10</span></td>
-                                                <td><button type="submit" class="btn btn-primary">edit</button></td>
+                                                <td><button type="submit" class="btn btn-primary">Grant</button></td>
                                                 <td><button type="submit" class="btn btn-primary">Deny</button></td>
                                             </tr>
                                         </tbody>
