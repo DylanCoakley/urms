@@ -48,7 +48,7 @@ window.onload = function () {
                     dur: 2000,
                     from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
                     to: data.path.clone().stringify(),
-                    easing: Chartist.Svg.Easing.easeOutQuint
+                    easing: Chartist.Svg.Easing.easeOutQuint 
                 }
             });
         }
@@ -230,9 +230,9 @@ window.onload = function () {
                             <div class="card-block">
                                 <h3 class="card-title m-t-15">Requests</h3>
                                 <div class="form-validation">
+                                    <?php echo form_open('requests/request_tickets'); ?>
                                     <form class="form-valide" action="#" method="post">
                                         <div class="form-group row">
-                                            
                                                 <label class="col-lg-4 col-form-label" for="val-type">Type<span class="text-danger">*</span></label>
                                                 <div class="col-lg-6">
                                                     <select class="form-control">
@@ -241,7 +241,6 @@ window.onload = function () {
                                                         <!--<option>Leave Raffle</option>-->
                                                     </select>
                                                 </div>
-                                            
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-quantity">Quantity <span class="text-danger">*</span></label>
@@ -265,6 +264,7 @@ window.onload = function () {
                                             </div>
                                         </div>
                                     </form>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>
@@ -281,41 +281,6 @@ window.onload = function () {
                             <div class="card-body">
                                 <div class="table-responsive" style="height:310px;overflow:auto;">
                                     <table class="table">
-                                        <thead>
-                                           <!-- <?php
-                                                $con=mysqli_connect("example.com","peter","abc123","my_db");
-                                                // Check connection
-                                                if (mysqli_connect_errno())
-                                                {
-                                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                                                }
-
-                                                $result = mysqli_query($con,"SELECT * FROM Persons");
-
-                                                echo "<table border='1'>
-                                                <tr>
-                                                <th>Firstname</th>
-                                                <th>Lastname</th>
-                                                </tr>";
-
-                                                while($row = mysqli_fetch_array($result))
-                                                {
-                                                    echo "<tr class='clickable-row' data-href='localhost/ci/pages/view/requests'>";
-                                                    echo "<td>" . $row['FirstName'] . "</td>";
-                                                    echo "<td>" . $row['LastName'] . "</td>";
-                                                    echo "</tr>";
-                                                }
-                                                echo "</table>";
-
-                                                mysqli_close($con);
-                                                ?>-->
-                                            <tr>
-                                                <th>Type</th>
-                                                <th>Quantity</th>
-                                                <th>Date</th>
-                                                <th>Response</th>
-                                            </tr>
-                                        </thead>
                                         <tbody>
                                             <?php foreach($requests as $request) : ?>
                                             <tr>
