@@ -190,4 +190,16 @@
 			$result = $this->db->get('accounttype');
 			return $result->row_array(0);
 		}
+
+		public function check_accounttype($user_id) {
+			$this->db->where('UserID', $user_id);
+			$result = $this->db->get('accounttype');
+
+			if($result->num_rows() === 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
