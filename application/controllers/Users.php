@@ -15,9 +15,9 @@
 			// If form does not comply to rules, redisplay webpage indicating the error
 			if(!$this->form_validation->run())
 			{
-				$this->load->view('templates/headerNew');
+				$this->load->view('templates/header');
 				$this->load->view('users/signup', $data);//, $data);
-				$this->load->view('templates/footerNew');
+				$this->load->view('templates/footer');
 			} else {
 				$password = $this->input->post('password');
 				$passwordh = password_hash($password, PASSWORD_BCRYPT);
@@ -49,6 +49,7 @@
 				$this->load->view('templates/footer');
 			} 
 			else {
+
 				$email = $this->input->post('email');
 
 				$password = $this->input->post('password');
@@ -58,25 +59,31 @@
 
 				if($user_id) {
 
-					$role = $this->user_model->get_user_raffle_role($user_id);
+					if($this->user_model->check_accounttype($user_id))
+					{
+						$role = $this->user_model->get_user_raffle_role($user_id);
 
-					// Create user session data
-					$user_data = array(
-						'user_id'   => $user_id,
-						'email'     => $email,
-						'role'      => $role,
-						'logged_in' => true
-					);
+						// Create user session data
+						$user_data = array(
+							'user_id'   => $user_id,
+							'email'     => $email,
+							'role'      => $role,
+							'logged_in' => true
+						);
 
-					// Set user session data
-					$this->session->set_userdata($user_data);
+						// Set user session data
+						$this->session->set_userdata($user_data);
 
-					$this->session->set_flashdata('user_logged_in', 'You are now logged in!');
+						$this->session->set_flashdata('user_logged_in', 'You are now logged in!');
 
-					if($this->session->userdata('role') === 'Visitor') {
-						redirect('raffles/view');
+						if($this->session->userdata('role') === 'Admin') {
+							redirect('pages/view/admin');
+						} else {
+							redirect('pages/view/seller');
+						}
 					} else {
-						redirect('users/statistics');
+						$this->session->set_flashdata('unapproved_login', 'Your join request has not been accepted at this time');
+						redirect('users/login');
 					}
 				}
 				else {
