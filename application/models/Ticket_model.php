@@ -36,12 +36,13 @@
 			return $query->num_rows();
 		}
 
-		public function update_tickets($total_tickets, $user_id) {
+		public function update_tickets($total_tickets, $user_id, $price) {
 
 			$this->db->where('UserID', $user_id);
 			$result = $this->db->get('accounttype');
 			$array = $result->row_array(0);
 			$tickets_before_sale = $array['AllocatedTickets'];
+			$money_before_sale = $array['MoneyRaised'];
 
 			if($tickets_before_sale < $total_tickets)
 			{
@@ -64,7 +65,8 @@
 				}
 
 				// Modify the amount of tickets the seller has left
-				$data2 = array('AllocatedTickets' => ($tickets_before_sale - $total_tickets));
+				$data2 = array('AllocatedTickets' => $tickets_before_sale - $total_tickets,
+							   'MoneyRaised' => $money_before_sale + $price);
 				$this->db->where('UserID', $user_id);
 				$this->db->update('accounttype', $data2);	
 				return true;

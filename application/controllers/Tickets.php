@@ -10,7 +10,7 @@
 			// Check if user has admin privileges
 			if ($this->session->userdata('role') === 'Seller') {
 				redirect('users/home');
-			}
+			} 
 
 			$data['tickets'] = $this->ticket_model->get_tickets();
 
@@ -35,8 +35,9 @@
 				$book_quantity = floor($ticket_quantity / 3);
 				$indiv_tickets = $ticket_quantity % 3;
 				$user_id = $this->session->userdata('user_id');
+				$price = ($indiv_tickets * 50) + ($book_quantity * 100);
 
-				if(!$this->ticket_model->update_tickets($ticket_quantity, $user_id))
+				if(!$this->ticket_model->update_tickets($ticket_quantity, $user_id, $price))
 				{
 					$this->session->set_flashdata('invalid_sale', 'Sale of ' . $total_tickets . ' tickets failed! Insufficient tickets remaining!');
 					redirect('tickets/sell_tickets');
