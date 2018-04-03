@@ -9,10 +9,8 @@
 			}
 
 			// Next check if user has Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
-			} elseif ($this->session->userdata('role') === 'Seller') {
-				redirect('users/statistics');
+			if ($this->session->userdata('role') === 'Seller') {
+				redirect('users/home');
 			}
 
 			$request = $this->request_model->get_request($request_id);
@@ -50,10 +48,8 @@
 			}
 
 			// Next check if user has Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
-			} elseif ($this->session->userdata('role') === 'Seller') {
-				redirect('users/statistics');
+			if ($this->session->userdata('role') === 'Seller') {
+				redirect('users/home');
 			}
 
 			$this->request_model->decline_request($request_id);
@@ -103,25 +99,22 @@
 			}
 
 			// Next check if user has Seller or Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
+			if($this->session->userdata('role') === 'Admin') {
+				redirect('users/home');
 			}
-
-			$data['title'] = 'Request Tickets';
 
 			$user_id = $this->session->userdata('user_id');
 
+			// Probably have to add another thing for Type
 			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
 
 			if(!$this->form_validation->run()) {
-				$this->load->view('templates/header');
-				$this->load->view('requests/request-tickets', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('users/home', $data);
 			} else {
 				$this->request_model->create_ticket_alloc($user_id);
 				$this->session->set_flashdata('tickets_requested', 'Your ticket request has been submitted');
 
-				redirect('requests/request_tickets');				
+				redirect('users/home');				
 			}
 
 		}
@@ -133,19 +126,12 @@
 			}
 
 			// Next check if user has Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
-			} elseif ($this->session->userdata('role') === 'Seller') {
-				redirect('users/statistics');
+			if ($this->session->userdata('role') === 'Seller') {
+				redirect('users/home');
 			}
-
-
-			$data['title'] = 'Raffle Requests';
 
 			$data['requests'] = $this->request_model->get_unresolved_requests();
 
-			$this->load->view('templates/header');
 			$this->load->view('requests/raffle-requests', $data);
-			$this->load->view('templates/footer');
 		}
 	}

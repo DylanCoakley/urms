@@ -56,6 +56,11 @@
 			return $query->row_array(0);
 		}
 
+		public function get_number_requests($raffle_id = 1) {
+			$query = $this->db->get('request');
+			return $query->num_rows();
+		}
+
 		public function get_user_requests($user_id) {
 			$this->db->select('*');
 			$this->db->from('request');

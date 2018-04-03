@@ -25,19 +25,13 @@
 			}
 
 			// Next check if user has Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
-			} elseif ($this->session->userdata('role') === 'Seller') {
-				redirect('users/statistics');
+			if ($this->session->userdata('role') === 'Seller') {
+				redirect('users/home');
 			}
-
-			$data['title'] = 'Your Sellers';
 
 			$data['sellers'] = $this->raffle_model->get_sellers();
 
-			$this->load->view('templates/header');
 			$this->load->view('raffles/raffle-sellers', $data);
-			$this->load->view('templates/footer');
 		}
 
 		public function settings() {
@@ -47,15 +41,24 @@
 			}
 
 			// Next check if user has Admin privileges
-			if($this->session->userdata('role') === 'Visitor') {
-				redirect('requests/user_list');
-			} elseif ($this->session->userdata('role') === 'Seller') {
-				redirect('users/statistics');
+			if ($this->session->userdata('role') === 'Seller') {
+				redirect('users/home');
 			}
 
-			$this->load->view('templates/header');
-			$this->load->view('raffles/raffle-settings');
-			$this->load->view('templates/footer');
+			$data['raffle'] = $this->raffle_model->get_raffle();
+
+			$this->form_validation->set_rules('raffle_name', 'Raffle Name', 'required');
+			$this->form_validation->set_rules('description', 'Raffle Description', 'required');
+
+			if(!$this->form_validation->run()) {
+				$this->load->view('raffles/raffle-settings', $data);
+			} else {
+				$this->raffle_model->edit_raffle_info();
+
+				$this->session->set_flashdata('raffle_info_edited', 'You have edited some information about your raffle!');
+
+				redirect('raffles/settings');
+			}
 		}
 
 		public function edit_info() {

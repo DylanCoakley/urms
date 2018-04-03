@@ -53,7 +53,7 @@
 			}
 		}
 
-		// Obtains the role (Visitor, Seller, Admin) of the User for a specified Raffle
+		// Obtains the role (Seller, Admin) of the User for a specified Raffle
 		public function get_user_raffle_role($user_id, $raffle_id = 1) {
 			$this->db->select('*');
 			$this->db->from('user');
@@ -72,8 +72,11 @@
 
 		// Get information associated with specified UserID
 		public function get_user($user_id) {
-			$this->db->where('UserID', $user_id);
-			$result = $this->db->get('user');
+			$this->db->select('*');
+			$this->db->from('user');
+			$this->db->join('accounttype', 'accounttype.UserID = user.UserID');
+			$this->db->where('user.UserID', $user_id);
+			$result = $this->db->get();
 			return $result->row_array(0);
 		}
 
@@ -91,7 +94,6 @@
 				'UserName' => $this->input->post('name'),
 				'Address'  => $this->input->post('address'),
 				'Phone'    => $this->input->post('phone'),
-				'Email'    => $this->input->post('email')
 			);
 
 			$this->db->where('UserID', $user_id);
@@ -185,6 +187,7 @@
 			return $query->row_array();
 		}
 
+		// Get number of allocated tickets not sold
 		public function get_remaining_tickets($user_id) {
 			$this->db->where('UserID', $user_id);
 			$result = $this->db->get('accounttype');

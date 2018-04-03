@@ -71,20 +71,27 @@
 
   <title>Login</title>
 
-    <?php if($this->session->flashdata('unapproved_login')) : ?>
-      <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('unapproved_login').'</p>'; ?>
-    <?php endif; ?>
-    <?php if($this->session->flashdata('login_failed')) : ?>
-      <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
-    <?php endif; ?>
+
+
   <!-- Fonts icons -->
   <link rel="stylesheet" href="<?php echo base_url().'/assets/css/font-awesome.min.css';?>">
+
+<?php if($this->session->flashdata('user_registered')) : ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_registered').'</p>'; ?>
+<?php endif; ?>
+<?php if($this->session->flashdata('unapproved_login')) : ?>
+    <?php echo '<p class="alert alert-warning">'.$this->session->flashdata('unapproved_login').'</p>'; ?>
+<?php endif; ?>
+<?php if($this->session->flashdata('login_failed')) : ?>
+    <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+<?php endif; ?>
+
 <?php echo form_open('users/login'); ?>
 	<div class="content" style="margin-left: 30%; padding-top: 50px">
     <div id="login-form">
       <h3 class="log-title">Log In</h3>
       <div class="form-group">
-        <input type="text" class="form-control" name="email" placeholder="Email" required data-error="*Please fill out this field">
+        <input type="email" class="form-control" name="email" placeholder="Email" required data-error="*Please fill out this field">
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
@@ -92,15 +99,15 @@
         <div class="help-block with-errors"></div>
       </div>
       <div class="log-line" style="padding-right: 50px;">
-        <div class="pull-right">
-          <button type="submit" id="log-submit" class="btn btn-md btn-block">Log In</button>
-        </div>
+
+          <button type="submit" id="log-submit" class="btn btn-block" style="width:113%;color:darkblue; border: 2px solid darkblue">Log In</button>
       </div>
-      <a href="register" style="color:darkblue">New Seller? Request to Join Raffle</a>
+      <a href="<?php echo base_url(); ?>users/register" class="forgot-password" style="color:darkblue">New Seller? Request to Join Raffle</a>
     </div>
   </div>
 </div>
 <?php form_close(); ?>
+
 <script src="<?php echo base_url().'/assets/js/jquery.min.js';?>"></script>
 <script src="<?php echo base_url().'/assets/js/tether.min.js';?>"></script>
 <script src="<?php echo base_url().'/assets/js/bootstrap.min.js';?>"></script>

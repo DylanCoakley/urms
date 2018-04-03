@@ -17,6 +17,25 @@
 			$this->load->database();
 		}
 
+		public function get_tickets($raffle_id = 1) {
+			$this->db->select('Name, ticket.Phone, ticket.Email, ticket.Address, UserName');
+			$this->db->from('ticket');
+			$this->db->join('user', 'ticket.UserID = user.UserID');
+			$this->db->where('RaffleID', $raffle_id);
+			$this->db->order_by('DatePurchased', 'DESC');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function get_number_tickets($raffle_id = 1) {
+			$this->db->select('TicketID');
+			$this->db->from('ticket');
+			$this->db->join('user', 'ticket.UserID = user.UserID');
+			$this->db->where('RaffleID', $raffle_id);
+			$query = $this->db->get();
+			return $query->num_rows();
+		}
+
 		public function update_tickets($total_tickets, $user_id) {
 
 			$this->db->where('UserID', $user_id);

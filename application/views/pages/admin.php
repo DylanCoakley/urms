@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/img/favicon.png">
-    <title>Admin-Home</title>
+    <title>Administrator Home</title>
 
     <link href="<?php echo base_url(); ?>assets3/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
@@ -110,12 +110,12 @@ window.onload = function () {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a href="http://localhost/ci/pages/view/admin">Home</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminSeller">Sellers</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminTickets">Tickets</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminRequest">Requests</a></li>
-                        <li><a href="http://localhost/ci/pages/view/sell">Sell Tickets</a></li>
-                        <li><a href="http://localhost/ci/pages/view/raffle">Raffle</a></li>
+                        <li><a href="<?php echo base_url(); ?>users/home">Home</a></li>
+                        <li><a href="<?php echo base_url(); ?>raffles/sellers">My Sellers</a></li>
+                        <li><a href="<?php echo base_url(); ?>tickets/view">Ticket List</a></li>
+                        <li><a href="<?php echo base_url(); ?>requests/raffle_requests">Raffle Requests</a></li>
+                        <li><a href="<?php echo base_url(); ?>tickets/sell_tickets">Sell Tickets</a></li>
+                        <li><a href="<?php echo base_url(); ?>raffles/settings">Raffle Settings</a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -131,7 +131,7 @@ window.onload = function () {
                     <h3 class="text-primary">Home</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Logout</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
                     </ol>
                 </div>
             </div>

@@ -89,12 +89,12 @@ window.onload = function () {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a href="http://localhost/ci/pages/view/admin">Home</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminSeller">Sellers</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminTickets">Tickets</a></li>
-                        <li><a href="http://localhost/ci/pages/view/adminRequest">Requests</a></li>
-                        <li><a href="http://localhost/ci/pages/view/sell">Sell Tickets</a></li>
-                        <li><a href="http://localhost/ci/pages/view/raffle">Raffle</a></li>
+                        <li><a href="<?php echo base_url(); ?>users/home">Home</a></li>
+                        <li><a href="<?php echo base_url(); ?>raffles/sellers">Sellers</a></li>
+                        <li><a href="<?php echo base_url(); ?>tickets/view">Tickets</a></li>
+                        <li><a href="<?php echo base_url(); ?>requests/raffle_requests">Requests</a></li>
+                        <li><a href="<?php echo base_url(); ?>tickets/sell">Sell Tickets</a></li>
+                        <li><a href="<?php echo base_url(); ?>raffles/settings">Raffle</a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

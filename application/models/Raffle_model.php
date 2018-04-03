@@ -37,9 +37,18 @@
 		}
 
 		public function edit_raffle_info($raffle_id = 1) {
+
+			$raffle_data = $this->get_raffle($raffle_id);
+			$available_tickets = $raffle_data['AvailableTickets'];
+			$old_max_tickets = $raffle_data['MaxTickets'];
+
+			$new_max_tickets = $this->input->post('max_tickets');
+
 			$update_data = array(
 					'RaffleName'  => $this->input->post('raffle_name'),
-					'Description' => $this->input->post('description') 
+					'Description' => $this->input->post('description'),
+					'AvailableTickets' => $available_tickets + ($new_max_tickets - $old_max_tickets),
+					'MaxTickets' => $new_max_tickets
 			);
 
 			$this->db->where('RaffleID', $raffle_id);
@@ -60,6 +69,34 @@
 			$this->db->or_where('Role', 'Admin');
 			$query = $this->db->get();
 			return $query->result_array();
+		}
+
+		public function get_number_sellers($raffle_id = 1) {
+			$this->db->select('*');
+			$this->db->from('accounttype');
+			$this->db->join('user', 'accounttype.UserID = user.UserID');
+			$this->db->where('accounttype.RaffleID', $raffle_id);
+			$this->db->where('Role', 'Seller');
+			$this->db->or_where('Role', 'Admin');
+			$query = $this->db->get();
+			return $query->num_rows();
+		}
+
+		public function get_money_raised($raffle_id = 1) {
+			$query = $this->db->select('SUM(MoneyRaised) AS MoneyRaised')
+					 		  ->where('RaffleID', $raffle_id)
+					 		  ->get('accounttype');
+			$result = $query->row_array(0);
+			return $result['MoneyRaised'];
+		}
+
+		public function get_money_user_raised($user_id, $raffle_id = 1) {
+			$query = $this->db->select('SUM(MoneyRaised) AS MoneyRaised')
+					 		  ->where('RaffleID', $raffle_id)
+					 		  ->where('UserID', $user_id)
+					 		  ->get('accounttype');
+			$result = $query->row_array(0);
+			return $result['MoneyRaised'];
 		}
 
 		public function get_all_tickets($raffle_id = 1) {

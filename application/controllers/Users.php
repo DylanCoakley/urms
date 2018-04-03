@@ -49,7 +49,6 @@
 				$this->load->view('templates/footer');
 			} 
 			else {
-
 				$email = $this->input->post('email');
 
 				$password = $this->input->post('password');
@@ -59,6 +58,7 @@
 
 				if($user_id) {
 
+					$role = $this->user_model->get_user_raffle_role($user_id);
 					if($this->user_model->check_accounttype($user_id))
 					{
 						$role = $this->user_model->get_user_raffle_role($user_id);
@@ -76,12 +76,9 @@
 
 						$this->session->set_flashdata('user_logged_in', 'You are now logged in!');
 
-						if($this->session->userdata('role') === 'Admin') {
-							redirect('pages/view/admin');
-						} else {
-							redirect('pages/view/seller');
-						}
-					} else {
+						redirect('users/home');
+					}
+					else {
 						$this->session->set_flashdata('unapproved_login', 'Your join request has not been accepted at this time');
 						redirect('users/login');
 					}
@@ -101,24 +98,35 @@
 				redirect('users/login');
 			}
 
-			$data['title'] = 'Edit Account Information';
 			$user_id = $this->session->userdata('user_id');
 			$data['user'] = $this->user_model->get_user($user_id);
+			$data['raffle'] = $this->raffle_model->get_raffle();
 
-			$this->form_validation->set_rules('name', 'Name', 'trim|required');
-			// Include case where email is not change, so does not have to be unique
-			//$this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[user.Email]|valid_email', array('is_unique' => 'This email already exists in our records.', 'valid_email' => 'This is an invalid email!'));
-
+			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('phone', 'Phone', 'required');
+			$this->form_validation->set_rules('address', 'Address', 'required');
 
 			if(!$this->form_validation->run()){
-				$this->load->view('templates/header');
 				$this->load->view('users/account-info', $data);
-				$this->load->view('templates/footer');
 			} else {
-				$this->user_model->update_user($user_id);
+				if($this->session->userdata('role') === 'Admin') {
+					$this->user_model->update_user($user_id);
 
+					$old_max_tickets = $data['user']['AllocatedTickets'];
+					$new_max_tickets = $this->input->post('tickets_allocated');
+
+					$requested_quantity = $new_max_tickets - $old_max_tickets;
+					// Attempt to reduce the number of available tickets in the raffle
+					if($this->raffle_model->reduce_available_tickets($requested_quantity)) {
+						// If successful, can proceed to allocate that number of tickets to user
+						$this->user_model->allocate_tickets($requested_quantity, $user_id);
+					}
+				} else {
+					// If just seller, can update their personal info
+					$this->user_model->update_user($user_id);
+				}
 				$this->session->set_flashdata('account_updated', 'Your account information has been successfully updated!');
-				redirect('raffles/index');
+				redirect('users/edit');
 			}
 		}
 
@@ -226,6 +234,48 @@
 			}
 		}
 
+		public function home() {
+
+			if(!$this->session->userdata('logged_in')) {
+				redirect('users/login');
+			}
+
+			$user_id = $this->session->userdata('user_id');
+			$role = $this->user_model->get_user_raffle_role($user_id);
+
+			if($role === 'Admin') {
+				$raffle_requests = $this->request_model->get_unresolved_requests();
+
+				$num_sellers = $this->raffle_model->get_number_sellers();
+				$num_tickets = $this->ticket_model->get_number_tickets();
+				$num_requests = $this->request_model->get_number_requests();
+				$money_raised = $this->raffle_model->get_money_raised();
+
+				$data['requests'] = $raffle_requests;
+				$data['num_sellers'] = $num_sellers;
+				$data['num_tickets'] = $num_tickets;
+				$data['num_requests'] = $num_requests;
+				$data['money_raised'] = $money_raised;
+
+				$this->load->view('users/admin', $data);
+			} else {
+				$tickets_left = $this->user_model->get_remaining_tickets($user_id);
+				$tickets_sold = $this->user_model->get_tickets_sold($user_id);
+				$money_user_raised = $this->raffle_model->get_money_user_raised($user_id);
+				$money_raised = $this->raffle_model->get_money_raised();
+
+				$data['tickets_left'] = sizeof($tickets_left);
+				$data['tickets_sold'] = sizeof($tickets_sold);
+				$data['money_user_raised'] = $money_user_raised;
+				$data['money_raised'] = $money_raised;
+
+				$requests = $this->request_model->get_user_requests($user_id);
+				$data['requests'] = $requests;
+
+				$this->load->view('users/seller', $data);
+			}
+		}
+
 		public function statistics() {
 
 			if(!$this->session->userdata('logged_in')) {
@@ -256,6 +306,8 @@
 
 			//$this->session->set_flashdata('user_loggedout', 'You are now logged out!');
 			$this->session->sess_destroy();
-			redirect('users/login');
+			$this->load->view('templates/header');
+			$this->load->view('users/login');
+			$this->load->view('templates/footer');
 		}
 	}
