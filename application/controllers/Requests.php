@@ -109,7 +109,9 @@
 			$this->form_validation->set_rules('ticket_quantity', 'Ticket Quantity', 'required');
 
 			if(!$this->form_validation->run()) {
-				$this->load->view('users/home', $data);
+				redirect('users/home');
+				$this->session->set_flashdata('request_failed', 'Your ticket request has failed');
+
 			} else {
 				$this->request_model->create_ticket_alloc($user_id);
 				$this->session->set_flashdata('tickets_requested', 'Your ticket request has been submitted');

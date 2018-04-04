@@ -40,11 +40,20 @@
 		}
 
 		public function create_ticket_alloc($user_id, $raffle_id = 1) {
+
+			if($this->input->post('form-request') === "request-dropdown")
+			{
+				$ticket_quantity = $this->input->post('ticket_quantity');
+			} elseif ($this->input->post('form-request') === "reduce-dropdown") {
+				$ticket_quantity = $this->input->post('ticket_quantity');
+				$ticket_quantity = -$ticket_quantity;
+			}
+
 			$data = array(
 				'UserID'   => $user_id,
 				'RaffleID' => $raffle_id,
 				'Type'     => 'Ticket_Alloc',
-				'Quantity' => $this->input->post('ticket_quantity')
+				'Quantity' => $ticket_quantity
 			);
 			
 			return $this->db->insert('request', $data);

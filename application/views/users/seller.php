@@ -90,6 +90,7 @@ window.onload = function () {
 }
 </style>
 </head>
+
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
@@ -128,6 +129,15 @@ window.onload = function () {
         <!-- End Left Sidebar  -->
         <!-- Page wrapper  -->
         <div class="page-wrapper">
+            <?php if($this->session->flashdata('tickets_requested')) : ?>
+                <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_requested').'</p>'; ?>
+            <?php endif; ?>
+            <?php if($this->session->flashdata('request_failed')) : ?>
+                <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('request_failed').'</p>'; ?>
+            <?php endif; ?>
+            <?php if($this->session->flashdata('tickets_deallocated')) : ?>
+                <?php echo '<p class="alert alert-success">'.$this->session->flashdata('tickets_deallocated').'</p>'; ?>
+            <?php endif; ?>
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
@@ -228,39 +238,28 @@ window.onload = function () {
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-block">
-                                <h3 class="card-title m-t-15">Requests</h3>
-                                <div class="form-validation">
+                                <h3 class="card-title m-t-15">Request Tickets</h3>
+                                <div class="form-validation">  
                                     <?php echo form_open('requests/request_tickets'); ?>
                                     <form class="form-valide" action="#" method="post">
                                         <div class="form-group row">
                                                 <label class="col-lg-4 col-form-label" for="val-type">Type<span class="text-danger">*</span></label>
                                                 <div class="col-lg-6">
-                                                    <select class="form-control">
-                                                        <option>Request Tickets</option>
-                                                        <option>Reduce Tickets</option>
-                                                        <!--<option>Leave Raffle</option>-->
+                                                    <select class="form-control" name="form-request">
+                                                        <option value="request-dropdown">Request Tickets</option>
+                                                        <option value="reduce-dropdown">Reduce Tickets</option>
                                                     </select>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-quantity">Quantity <span class="text-danger">*</span></label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-quantity" name="val-quantity" placeholder="10">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label"><a data-toggle="modal" data-target="#modal-terms" href="#">Email Response?</a></label>
-                                            <div class="col-lg-8">
-                                                <label class="css-control css-control-primary css-checkbox" for="val-conEmail">
-                                                    <input type="checkbox" class="css-control-input" id="val-terms" name="val-terms" value="1">
-                                                    <span class="css-control-indicator"></span> Yes
-                                                </label>
+                                                <input type="number" class="form-control" max="100" id="val-quantity" name="ticket_quantity" placeholder="Enter number of tickets">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-3 col-sm-9">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-inverse">Clear</button>
                                             </div>
                                         </div>
                                     </form>
