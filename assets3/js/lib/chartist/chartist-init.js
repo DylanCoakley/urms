@@ -64,20 +64,19 @@
     new Chartist.Pie('.ct-pie-chart', data, options, responsiveOptions);
 
     /*------------------------------------*/
-
     var chart = new Chartist.Line('.ct-svg-chart', {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         series: [
     [1, 5, 2, 5, 4, 3],
     [2, 3, 4, 8, 1, 2],
-    [5, 4, 3, 2, 1, 0.5]
   ]
     }, {
-        low: 0,
+        low: 0,     
         showArea: true,
         showPoint: false,
         fullWidth: true
     });
+    
 
     chart.on('draw', function (data) {
         if (data.type === 'line' || data.type === 'area') {
@@ -343,8 +342,7 @@ var chart = new Chartist.Line('.ct-svg-chart', {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   series: [
     [1, 5, 2, 5, 4, 3],
-    [2, 3, 4, 8, 1, 2],
-    [5, 4, 3, 2, 1, 0.5]
+    [2, 3, 4, 8, 1, 2]
   ]
 }, {
   low: 0,
@@ -411,12 +409,13 @@ new Chartist.Pie('.ct-gauge-chart', {
 
 // New Donute chart
 var chart = new Chartist.Pie('.ct-donute-chart-new', {
-  series: [20, 10, 30, 40]
-}, {
-  donut: true,
-  total: 200,
-  low:0,
-  showLabel: false
+  labels: ['90%'],
+      series: [180]
+    }, {
+      donut: true,
+      total: 200,
+      low:0,
+      showLabel: true
 });
 
 // Animated Donute chart
